@@ -11,7 +11,14 @@ public class Room : MonoBehaviour
     public Camera mainCamera;
     public GameObject CamPrefeb;
     public Shader DefaultShader;
-    
+
+    public void SetRoomActive(bool state) {
+        foreach (Plane plane in planes)
+        {
+            plane.cam.SetActive(state);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,13 +39,14 @@ public class Room : MonoBehaviour
                 Cam[i] = Object.Instantiate(CamPrefeb);
                 var CamCont = Cam[i].GetComponent<CameraController>();
                 CamCont.HiddenPlane = planes[i].Brother;
+                planes[i].cam = Cam[i];
                 CamCont.PlayerPlane = planes[i];
                 CamCont.PlayerCamera = mainCamera;
                 var Tex = new RenderTexture(Screen.width, Screen.height, 24);
                 Cam[i].GetComponent<Camera>().targetTexture = Tex;
                 Mats[i] = new Material(DefaultShader) { mainTexture = Tex };
                 planes[i].GetComponent<MeshRenderer>().material = Mats[i];
-                Cam[i].SetActive(true);
+                Cam[i].SetActive(false);
             }
         }
     }
