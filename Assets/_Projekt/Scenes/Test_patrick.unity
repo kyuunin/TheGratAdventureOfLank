@@ -198,16 +198,48 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 255823058}
-    - target: {fileID: 8212057803601443125, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c,
-        type: 3}
-      propertyPath: Brother
-      value: 
-      objectReference: {fileID: 1833771381}
     - target: {fileID: 2130721961025343218, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c,
         type: 3}
       propertyPath: Brother
       value: 
       objectReference: {fileID: 1422530568}
+    - target: {fileID: 8212057803601443125, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c,
+        type: 3}
+      propertyPath: Brother
+      value: 
+      objectReference: {fileID: 1833771381}
+    - target: {fileID: 496660365, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 496660365, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304674145, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1304674145, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000089979, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2000089979, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078748946, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Range
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2078748946, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
+      propertyPath: m_Intensity
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
 --- !u!114 &1422530568 stripped
@@ -501,11 +533,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainChar
       objectReference: {fileID: 0}
-    - target: {fileID: 6517000371999706291, guid: 1c8280e99b82dc045b46b9ad59e5668b,
-        type: 3}
-      propertyPath: near clip plane
-      value: 0.05
-      objectReference: {fileID: 0}
     - target: {fileID: 2237090004390251295, guid: 1c8280e99b82dc045b46b9ad59e5668b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -560,6 +587,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6517000371999706291, guid: 1c8280e99b82dc045b46b9ad59e5668b,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 225162083, guid: 1c8280e99b82dc045b46b9ad59e5668b, type: 3}
       propertyPath: m_IsTrigger
