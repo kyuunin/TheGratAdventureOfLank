@@ -25,7 +25,7 @@ public class Plane : MonoBehaviour
     }
 
     void Init() {
-        Center = transform.localPosition;
-        Normal = transform.localRotation * new Vector3(0,1,0);
+        Center = transform.position;
+        Normal = transform.rotation * new Vector3(0,1,0);
     }
 }
