@@ -23,6 +23,8 @@ public class Plane : MonoBehaviour
     {
         
     }
+
+
     private void OnTriggerExit(Collider other)
     {
         var cc = other.GetComponent<CharacterController>();
