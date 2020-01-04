@@ -36,6 +36,7 @@ public class LevelGen : MonoBehaviour
         {
             var obj = Object.Instantiate(LevelStart, Vector3.zero, Quaternion.identity);
             var room = obj.GetComponent<Room>();
+            room.isFirst = true;
             foreach (Plane plane in room.planes)
             {
                 queue.Add(plane);
