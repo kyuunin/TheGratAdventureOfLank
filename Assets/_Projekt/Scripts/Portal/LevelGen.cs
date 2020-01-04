@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class LevelGen : MonoBehaviour
 {
+    public GameObject mainChar;
+    public Vector3 charPos;
+    public Quaternion charDir = Quaternion.identity;
     public GameObject LevelStart;
     public GameObject LevelEnd;
     public GameObject[] rooms;
@@ -53,15 +56,19 @@ public class LevelGen : MonoBehaviour
             {
                 GameObject obj;
                 Room room;
+                int currIter = 0;
                 while (true)
                 {
-                    //TODO change room
-                    obj = Object.Instantiate(LevelStart, new Vector3(space * x, 0, space * y), Quaternion.identity);
+                    obj = Object.Instantiate(rooms[Random.Range(0, rooms.Length)], new Vector3(space * x, 0, space * y), Quaternion.identity);
                     room = obj.GetComponent<Room>();
                     //check if posible Level Layout
                     if (queue.Count == 0 && room.planes.Length == 1)
                     {
                         Destroy(obj);
+                        if (currIter++ == 100)
+                        {
+                            throw new System.Exception("coundn't get next room");
+                        }
                     }
                     else
                     {
@@ -82,17 +89,21 @@ public class LevelGen : MonoBehaviour
         }
         if (queue.Count == 0)
             throw new System.Exception("Es gibt keine Räume mehr");
+        var currIter2 = 0;
         while (true)
         {
             if (queue.Count % 2 == 1)
             {
                 break;
             }
+            if (currIter2++ == 100)
+            {
+                throw new System.Exception("coundn't get next room");
+            }
             var x = i / width;
             var y = i % width;
             var exitPlane = RandomPop(queue);
-            //TODO change room
-            var obj = Object.Instantiate(LevelStart, new Vector3(space * x, 0, space * y), Quaternion.identity);
+            var obj = Object.Instantiate(rooms[Random.Range(0, rooms.Length)], new Vector3(space * x, 0, space * y), Quaternion.identity);
             var room = obj.GetComponent<Room>();
             int entId = Random.Range(0, room.planes.Length); //choose entrance
             var entPlane = room.planes[entId];
@@ -116,14 +127,16 @@ public class LevelGen : MonoBehaviour
             Lank(entPlane, exitPlane);
             ++i;
         }
-        /*
-        while(queue.Count != 0)
+
+        while (queue.Count != 0)
         {
 
             var exitPlane = RandomPop(queue);
             var entPlane = RandomPop(queue);
             Lank(entPlane, exitPlane);
 
-        }*/
+        }
+
+        Object.Instantiate(mainChar, charPos, charDir);
     }
 }

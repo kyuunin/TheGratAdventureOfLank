@@ -6,7 +6,9 @@ public class Plane : MonoBehaviour
 {
     public Vector3 Center { get; set; }
     public Vector3 Normal { get; set; }
+    public GameObject cam;
     public Plane Brother;
+    public Room Parent;
 
 
     // Start is called before the first frame update
@@ -36,6 +38,8 @@ public class Plane : MonoBehaviour
         {
             cc.enabled = false;
             {
+                Parent.SetRoomActive(false);
+                Brother.Parent.SetRoomActive(true);
                 Debug.Log(other.name + " entered");
 
                 var Rot = Quaternion.LookRotation(-Brother.Normal) * Quaternion.Inverse(Quaternion.LookRotation(Normal));
