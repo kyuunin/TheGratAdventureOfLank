@@ -31,7 +31,7 @@ public class Room : MonoBehaviour
             {
                 Cam[i] = Object.Instantiate(CamPrefeb);
                 var CamCont = Cam[i].GetComponent<CameraController>();
-                CamCont.HiddenPlane = planes[i].Other;
+                CamCont.HiddenPlane = planes[i].Brother;
                 CamCont.PlayerPlane = planes[i];
                 CamCont.PlayerCamera = mainCamera;
                 var Tex = new RenderTexture(Screen.width, Screen.height, 24);
