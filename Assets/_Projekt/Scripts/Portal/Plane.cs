@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Plane: MonoBehaviour
+public class Plane : MonoBehaviour
 {
     public Vector3 Center { get; set; }
     public Vector3 Normal { get; set; }
+    public Plane Other;
+
 
     // Start is called before the first frame update
     void Start()
@@ -13,6 +15,7 @@ public class Plane: MonoBehaviour
         Init();
         Debug.Log(Center);
         Debug.Log(Normal);
+
     }
 
     // Update is called once per frame
