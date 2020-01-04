@@ -24,6 +24,17 @@ public class Plane : MonoBehaviour
         
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log(other.name+" entered");
+        other.transform.rotation = Quaternion.LookRotation(Other.Normal);
+        var cc = other.GetComponent<CharacterController>();
+        cc.enabled = false;
+        other.transform.position = Other.Center;
+        cc.enabled = true;
+        
+    }
+
     void Init() {
         Center = transform.position;
         Normal = transform.rotation * new Vector3(0,1,0);
