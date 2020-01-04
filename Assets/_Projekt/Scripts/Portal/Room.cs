@@ -34,7 +34,7 @@ public class Room : MonoBehaviour
                 CamCont.HiddenPlane = planes[i].Other;
                 CamCont.PlayerPlane = planes[i];
                 CamCont.PlayerCamera = mainCamera;
-                var Tex = new RenderTexture(1024, 768, 24);
+                var Tex = new RenderTexture(Screen.width, Screen.height, 24);
                 Cam[i].GetComponent<Camera>().targetTexture = Tex;
                 Mats[i] = new Material(DefaultShader) { mainTexture = Tex };
                 planes[i].GetComponent<MeshRenderer>().material = Mats[i];
