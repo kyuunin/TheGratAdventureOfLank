@@ -6,7 +6,7 @@ public class Plane : MonoBehaviour
 {
     public Vector3 Center { get; set; }
     public Vector3 Normal { get; set; }
-    public Plane Other;
+    public Plane Brother;
 
 
     // Start is called before the first frame update
@@ -23,17 +23,31 @@ public class Plane : MonoBehaviour
     {
         
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerExit(Collider other)
     {
-        Debug.Log(other.name+" entered");
-        other.transform.rotation = Quaternion.LookRotation(Other.Normal);
         var cc = other.GetComponent<CharacterController>();
-        cc.enabled = false;
-        other.transform.position = Other.Center;
-        cc.enabled = true;
+        
+        var pos = other.transform.TransformPoint(cc.center)-Center;
+        var dir = Vector3.Dot(pos, Normal);
+        
+        if(dir<0)
+        {
+            cc.enabled = false;
+            {
+                Debug.Log(other.name + " entered");
+
+                var Rot = Quaternion.LookRotation(-Brother.Normal) * Quaternion.Inverse(Quaternion.LookRotation(Normal));
+
+                var RelPlayerPos = other.transform.position - Center;
+                var RelHiddenPos = Rot * RelPlayerPos;
+                other.transform.position = RelHiddenPos + Brother.Center;
+                other.transform.rotation = Rot * other.transform.rotation;
+            }
+            cc.enabled = true;
+        }
         
     }
+    
 
     void Init() {
         Center = transform.position;
