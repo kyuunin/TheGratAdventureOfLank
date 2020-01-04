@@ -7,7 +7,7 @@ public class DamageCollider : MonoBehaviour
     public bool isPlayerWeapon;
     public bool isEnabled = true;
 
-    private void OnTriggerEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (!isEnabled) return;
 
