@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
         var RelHiddenPos = Rot * RelPlayerPos;
         transform.position = RelHiddenPos + HiddenPlane.Center;
         transform.rotation = Rot * PlayerCamera.transform.rotation;
-        Debug.Log(this.GetHashCode() + ":"+PlayerCamera.transform.position + RelPlayerPos+"\n" + transform.position + RelHiddenPos+"\n"+Rot.eulerAngles);
+        //Debug.Log(this.GetHashCode() + ":"+PlayerCamera.transform.position + RelPlayerPos+"\n" + transform.position + RelHiddenPos+"\n"+Rot.eulerAngles);
 
         thisCamera.fieldOfView = PlayerCamera.fieldOfView;
     }
