@@ -13,7 +13,19 @@ public class Room : MonoBehaviour
     public GameObject CamPrefeb;
     public Shader DefaultShader;
 
-    public void SetRoomActive(bool state) {
+    public static Room CurrentPlayerRoom { get; set; }
+
+    private static Room lastRoomActive = null;
+    public void SetRoomActiveExclusively()
+    {
+        if (lastRoomActive == this) return;
+
+        if(lastRoomActive) lastRoomActive.SetRoomActive(false);
+        lastRoomActive = this;
+        this.SetRoomActive(true);
+    }
+
+    private void SetRoomActive(bool state) {
         foreach (Plane plane in planes)
         {
             plane.cam.SetActive(state);

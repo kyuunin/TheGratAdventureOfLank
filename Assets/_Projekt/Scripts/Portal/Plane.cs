@@ -38,8 +38,6 @@ public class Plane : MonoBehaviour
         {
             cc.enabled = false;
             {
-                Parent.SetRoomActive(false);
-                Brother.Parent.SetRoomActive(true);
                 Debug.Log(other.name + " entered");
 
                 var Rot = Quaternion.LookRotation(-Brother.Normal) * Quaternion.Inverse(Quaternion.LookRotation(Normal));
@@ -48,6 +46,8 @@ public class Plane : MonoBehaviour
                 var RelHiddenPos = Rot * RelPlayerPos;
                 other.transform.position = RelHiddenPos + Brother.Center;
                 other.transform.rotation = Rot * other.transform.rotation;
+
+                Room.CurrentPlayerRoom = this.Brother.Parent;
             }
             cc.enabled = true;
         }
