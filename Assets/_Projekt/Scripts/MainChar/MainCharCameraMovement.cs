@@ -8,6 +8,7 @@ public class MainCharCameraMovement : MonoBehaviour
     public Transform cameraFocus;
 
     public  float pitch = 0.0f;
+    public float cameraCollisionOffset = 0.1f;
 
     public float mouseSpeed = 5.0f;
 
@@ -22,8 +23,14 @@ public class MainCharCameraMovement : MonoBehaviour
         var cameraVector = transform.rotation * Quaternion.Euler(-pitch * 180 / Mathf.PI, 0, 0) * new Vector3(0,0,1) ;
 
         float distance = 5;
+        float currentDistance = distance - cameraCollisionOffset;
 
-        movementCamera.transform.position = cameraFocus.position + cameraVector * distance;
+        RaycastHit hit;
+        if(Physics.Raycast(cameraFocus.position, cameraVector, out hit, distance, ~4)) {
+            currentDistance = hit.distance;
+        }
+
+        movementCamera.transform.position = cameraFocus.position + cameraVector * currentDistance;
         movementCamera.transform.rotation = transform.rotation * Quaternion.Euler(pitch * 180 / Mathf.PI, 180,0 );
     }
 }
