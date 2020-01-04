@@ -12,6 +12,7 @@ public class MainCharCameraMovement : MonoBehaviour
 
     public float mouseSpeed = 5.0f;
 
+    Room lastCurrentRoom = null;
     void Update()
     {
         transform.Rotate(0, Time.deltaTime * mouseSpeed * Input.GetAxis("Mouse X") * 180 / Mathf.PI, 0);
@@ -35,8 +36,10 @@ public class MainCharCameraMovement : MonoBehaviour
         movementCamera.transform.position = cameraFocus.position + cameraVector * currentDistance;
         movementCamera.transform.rotation = transform.rotation * Quaternion.Euler(pitch * 180 / Mathf.PI, 180,0 );
 
-        if(plane != null)
+        if (plane != null)
         {
+            lastCurrentRoom = plane.Parent;
+            plane.Brother.Parent.SetRoomActiveExclusively();
             var Rot = Quaternion.LookRotation(-plane.Brother.Normal) * Quaternion.Inverse(Quaternion.LookRotation(plane.Normal));
 
             var relCamPos = movementCamera.transform.position - plane.Center;
@@ -44,5 +47,7 @@ public class MainCharCameraMovement : MonoBehaviour
             movementCamera.transform.position = RelHiddenPos + plane.Brother.Center;
             movementCamera.transform.rotation = Rot * movementCamera.transform.rotation;
         }
+        else if(lastCurrentRoom != null)
+            lastCurrentRoom.SetRoomActiveExclusively();
     }
 }
