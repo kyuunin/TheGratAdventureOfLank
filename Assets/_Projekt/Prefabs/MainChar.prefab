@@ -723,6 +723,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   strafeSpeed: 3
+  swordCollider: {fileID: 225162082}
+  life: 5
 --- !u!114 &6517000372028115659
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1736,6 +1738,8 @@ GameObject:
   - component: {fileID: 6388227171751729732}
   - component: {fileID: 1432067284223771509}
   - component: {fileID: 5437881490879312001}
+  - component: {fileID: 225162083}
+  - component: {fileID: 225162082}
   m_Layer: 0
   m_Name: Sword
   m_TagString: Untagged
@@ -1803,6 +1807,33 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &225162083
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214097163727070837}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.802784, y: 4.396868, z: 4.3943105}
+  m_Center: {x: -0.43281683, y: -0.09345147, z: -1.9483806}
+--- !u!114 &225162082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8214097163727070837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fef032d8a0c77489dc325929f7e1e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isPlayerWeapon: 1
+  isEnabled: 0
 --- !u!1 &8319627094821157108
 GameObject:
   m_ObjectHideFlags: 0
