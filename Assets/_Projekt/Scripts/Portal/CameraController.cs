@@ -23,10 +23,11 @@ public class CameraController : MonoBehaviour
 
         var Rot = Quaternion.LookRotation(-HiddenPlane.Normal) * Quaternion.Inverse(Quaternion.LookRotation(PlayerPlane.Normal));
 
-        var RelPlayerPos = PlayerCamera.transform.localPosition - PlayerPlane.Center;
+        var RelPlayerPos = PlayerCamera.transform.position - PlayerPlane.Center;
         var RelHiddenPos = Rot * RelPlayerPos;
-        transform.localPosition = RelHiddenPos + HiddenPlane.Center;
-        transform.localRotation = Rot * PlayerCamera.transform.localRotation;
+        transform.position = RelHiddenPos + HiddenPlane.Center;
+        transform.rotation = Rot * PlayerCamera.transform.rotation;
+        Debug.Log(this.GetHashCode() + ":"+PlayerCamera.transform.position + RelPlayerPos+"\n" + transform.position + RelHiddenPos+"\n"+Rot.eulerAngles);
 
         thisCamera.fieldOfView = PlayerCamera.fieldOfView;
     }
