@@ -24,5 +24,7 @@ public class MainCharMovementController : MonoBehaviour
         move -= transform.right * strafeSpeed * Input.GetAxis("Horizontal");
 
         controller.SimpleMove(move);
+        animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
+        animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
     }
 }
