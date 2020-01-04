@@ -25,12 +25,24 @@ public class MainCharCameraMovement : MonoBehaviour
         float distance = 5;
         float currentDistance = distance - cameraCollisionOffset;
 
+        Plane plane = null;
         RaycastHit hit;
         if(Physics.Raycast(cameraFocus.position, cameraVector, out hit, distance, ~4)) {
-            currentDistance = hit.distance;
+            plane = hit.collider.gameObject.GetComponent<Plane>();
+            if (plane == null) currentDistance = hit.distance;
         }
 
         movementCamera.transform.position = cameraFocus.position + cameraVector * currentDistance;
         movementCamera.transform.rotation = transform.rotation * Quaternion.Euler(pitch * 180 / Mathf.PI, 180,0 );
+
+        if(plane != null)
+        {
+            var Rot = Quaternion.LookRotation(-plane.Brother.Normal) * Quaternion.Inverse(Quaternion.LookRotation(plane.Normal));
+
+            var relCamPos = movementCamera.transform.position - plane.Center;
+            var RelHiddenPos = Rot * relCamPos;
+            movementCamera.transform.position = RelHiddenPos + plane.Brother.Center;
+            movementCamera.transform.rotation = Rot * movementCamera.transform.rotation;
+        }
     }
 }
