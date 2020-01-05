@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCharMovementController : DamageReciever
 {
@@ -9,11 +10,17 @@ public class MainCharMovementController : DamageReciever
 
     public float speed = 5.0f;
     public float strafeSpeed = 3.0f;
+    public float gravity = 10f;
+    public float jumpSpeed = 10.0f;
+    private Vector3 fallVec = Vector3.zero;
+    public bool IsJumping { get; set; } = false;
 
     public DamageCollider swordCollider;
+    public DamageColorChanger dmgColorChanger;
 
     public int life = 8;
     public HearthsDisplay lifeDisplay;
+    public bool IsDead { get; set; }
 
     void Start()
     {
@@ -22,23 +29,54 @@ public class MainCharMovementController : DamageReciever
         animator.GetBehaviour<SwordHitAnimationBehaviour>().swordCollider = swordCollider;
 
         Cursor.lockState = CursorLockMode.Locked;
-
+        IsDead = false;
         lifeDisplay.SetValue(life);
     }
-    
+
     void Update()
     {
-        var move = new Vector3(0, 0, 0);
-        move -= transform.forward * speed * Input.GetAxis("Vertical");
-        move -= transform.right * strafeSpeed * Input.GetAxis("Horizontal");
-
-        controller.SimpleMove(move);
-        animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
-        animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
-
-        if(Input.GetButtonDown("Fire1"))
+        if (!IsDead)
         {
-            animator.SetTrigger("swordHit");
+            var move = new Vector3(0, 0, 0);
+            move -= transform.forward * speed * Input.GetAxis("Vertical");
+            move -= transform.right * strafeSpeed * Input.GetAxis("Horizontal");
+
+            controller.SimpleMove(move);
+            animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
+            animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
+            if (!controller.isGrounded)
+            {
+                fallVec.y -= gravity * Time.deltaTime;
+                controller.Move(fallVec * Time.deltaTime);
+            }
+            else
+            {
+                fallVec.y = 0;
+                if (IsJumping)
+                {
+                    animator.SetTrigger("jumpEnd");
+                    IsJumping = false;
+                }
+                if (Input.GetAxis("Jump") > 0.5)
+                {
+                    animator.SetTrigger("jumpStart");
+                    fallVec.y = jumpSpeed;
+                    controller.Move(fallVec * Time.deltaTime);
+                    IsJumping = true;
+                }
+            }
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                animator.SetTrigger("swordHit");
+            }
+        }
+        else if (Input.GetKey(KeyCode.Return))
+        {
+            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            CoinScript.Reset();
+
         }
     }
 
@@ -47,10 +85,22 @@ public class MainCharMovementController : DamageReciever
         return true;
     }
 
+    public void Die()
+    {
+        if (!IsDead)
+        {
+            IsDead = true;
+            animator.SetTrigger("die");
+            lifeDisplay.Die();
+        }
+    }
+
     public override void DoDamage()
     {
         Debug.Log("MainChar DoDamage()");
+        if (life > 0) dmgColorChanger.ShowDamage();
         life -= 1;
+        if (life <= 0) Die();
         lifeDisplay.SetValue(life);
     }
 }

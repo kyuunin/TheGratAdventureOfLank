@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 9138325661834215638}
   - component: {fileID: 9138325661834215637}
   - component: {fileID: 4114617386260900426}
-  m_Layer: 0
+  - component: {fileID: 436082649764159462}
+  m_Layer: 2
   m_Name: KingBlobi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -113,10 +114,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDistance: 20
-  jumpHeight: 60
+  jumpHeight: 40
   jumpDistance: 40
   jumpTimeout: 3
-  life: 10
+  knockbackJumpFactor: 0
+  knockbackMoveFactor: 0
+  life: 50
 --- !u!136 &9138325661834215632
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -172,3 +175,16 @@ CapsuleCollider:
   m_Height: 18.3
   m_Direction: 2
   m_Center: {x: 1.2429137, y: 2.6796868, z: -0.56592745}
+--- !u!114 &436082649764159462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9138325661834215634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0723afd7f8586814aa7b326280d5e83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMaterial: {fileID: 2100000, guid: 0fcdb77caeb3eb447b357936148986bd, type: 2}

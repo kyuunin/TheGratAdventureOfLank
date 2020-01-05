@@ -9,6 +9,9 @@ public class BlobiMovement : DamageReciever
     public float jumpDistance = 1.0f;
     public float jumpTimeout = 3.0f;
 
+    public float knockbackJumpFactor = 1.0f;
+    public float knockbackMoveFactor = 1.0f;
+
     public int life = 3;
 
     private Rigidbody rigidb;
@@ -23,10 +26,11 @@ public class BlobiMovement : DamageReciever
         if (life == 0) Destroy(gameObject);
         else
         {
+            GetComponent<DamageColorChanger>().ShowDamage();
+
             var direction = target.position - transform.position;
             var xzDirection = new Vector3(direction.x, 0, direction.z).normalized;
-            //rigidb.AddForce(-direction * jumpDistance * 3);
-            Jump(-xzDirection);
+            rigidb.AddForce(-xzDirection * jumpDistance * knockbackMoveFactor + Vector3.up * jumpHeight * knockbackJumpFactor);
         }
     }
 

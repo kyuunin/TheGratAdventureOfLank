@@ -8,7 +8,12 @@ public class HearthsDisplay : MonoBehaviour
     public Sprite heartFullSprite;
     public Sprite heartHalfSprite;
     public Sprite heartEmptySprite;
+    public GameObject DeathText;
     public Image[] hearthsImages;
+
+    public void Die() {
+        DeathText.SetActive(true);
+    }
 
     public void SetValue(int value)
     {
