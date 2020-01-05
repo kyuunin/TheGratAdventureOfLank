@@ -13,6 +13,7 @@ public class MainCharMovementController : DamageReciever
     public float gravity = 10f;
     public float jumpSpeed = 10.0f;
     private Vector3 fallVec = Vector3.zero;
+    public bool IsJumping { get; set; } = false;
 
     public DamageCollider swordCollider;
 
@@ -50,10 +51,17 @@ public class MainCharMovementController : DamageReciever
             else
             {
                 fallVec.y = 0;
+                if (IsJumping)
+                {
+                    animator.SetTrigger("jumpEnd");
+                    IsJumping = false;
+                }
                 if (Input.GetAxis("Jump") > 0.5)
                 {
+                    animator.SetTrigger("jumpStart");
                     fallVec.y = jumpSpeed;
                     controller.Move(fallVec * Time.deltaTime);
+                    IsJumping = true;
                 }
             }
 
