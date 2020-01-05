@@ -12,7 +12,7 @@ public class DamageCollider : MonoBehaviour
         if (!isEnabled) return;
 
         var recv = collision.gameObject.GetComponent<DamageReciever>();
-        if (recv.IsPlayer() != isPlayerWeapon)
+        if (recv!=null&&recv.IsPlayer() != isPlayerWeapon)
         {
             Debug.Log("DamageCollider: do Damage");
             recv.DoDamage();

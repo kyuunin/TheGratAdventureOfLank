@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 793884300927610949}
   - component: {fileID: 2828152636807764603}
   - component: {fileID: 2648920750288314007}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -102,7 +102,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6632819969664702452}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}

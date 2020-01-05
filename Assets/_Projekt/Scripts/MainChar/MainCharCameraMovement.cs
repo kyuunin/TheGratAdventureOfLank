@@ -15,9 +15,12 @@ public class MainCharCameraMovement : MonoBehaviour
     Room lastCurrentRoom = null;
     void Update()
     {
-        transform.Rotate(0, Time.deltaTime * mouseSpeed * Input.GetAxis("Mouse X") * 180 / Mathf.PI, 0);
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        pitch -= Time.deltaTime * mouseSpeed * Input.GetAxis("Mouse Y");
+        transform.Rotate(0, Time.deltaTime * mouseSpeed * mouseX * 180 / Mathf.PI, 0);
+
+        pitch -= Time.deltaTime * mouseSpeed * mouseY;
         while (pitch > Mathf.PI / 2) pitch = Mathf.PI / 2 - 0.001f;
         while (pitch < -Mathf.PI / 2) pitch = -Mathf.PI / 2 + 0.001f;
         
@@ -31,6 +34,13 @@ public class MainCharCameraMovement : MonoBehaviour
         if(Physics.Raycast(cameraFocus.position, cameraVector, out hit, distance, ~4)) {
             plane = hit.collider.gameObject.GetComponent<Plane>();
             if (plane == null) currentDistance = hit.distance;
+        }
+        
+        foreach (Collider c in Physics.OverlapSphere(cameraFocus.position, 0.01f, ~4, QueryTriggerInteraction.Collide))
+        {
+            var p = c.GetComponent<Plane>();
+            
+            if (p != null && Vector3.Dot(p.Normal, cameraVector) < 0) plane = p;
         }
 
         movementCamera.transform.position = cameraFocus.position + cameraVector * currentDistance;
