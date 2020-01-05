@@ -3283,6 +3283,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalWithPlane (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5012782034743395948, guid: b29dc60d138be3c4f9ab21e177410909,
+        type: 3}
+      propertyPath: Parent
+      value: 
+      objectReference: {fileID: 7121872374496664872}
     - target: {fileID: 6370934187134934396, guid: b29dc60d138be3c4f9ab21e177410909,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4050,6 +4055,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PortalWithPlane
       objectReference: {fileID: 0}
+    - target: {fileID: 5012782034743395948, guid: b29dc60d138be3c4f9ab21e177410909,
+        type: 3}
+      propertyPath: Parent
+      value: 
+      objectReference: {fileID: 7121872374496664872}
     - target: {fileID: 6370934187134934396, guid: b29dc60d138be3c4f9ab21e177410909,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4813,6 +4823,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 7121872374496664873}
     m_Modifications:
     - target: {fileID: 1708584449510969950, guid: 03242546b295e7447bde6ef44331f466,
+        type: 3}
+      propertyPath: m_Name
+      value: Wall (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4705498868276494311, guid: 03242546b295e7447bde6ef44331f466,
         type: 3}
       propertyPath: m_Name
       value: Wall (7)
