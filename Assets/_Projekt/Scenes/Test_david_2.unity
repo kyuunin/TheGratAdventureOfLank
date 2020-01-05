@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &2050172821
+--- !u!1 &427465001
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,22 +128,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2050172823}
-  - component: {fileID: 2050172822}
+  - component: {fileID: 427465003}
+  - component: {fileID: 427465002}
   m_Layer: 0
-  m_Name: Map Generator
+  m_Name: Level Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2050172822
+--- !u!114 &427465002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050172821}
+  m_GameObject: {fileID: 427465001}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c00ef3914310aa44a9b94150d6e028eb, type: 3}
@@ -152,39 +152,43 @@ MonoBehaviour:
   mainChar: {fileID: 2977130425900923148, guid: 1c8280e99b82dc045b46b9ad59e5668b,
     type: 3}
   charPos: {x: 0, y: 0, z: 0}
-  charDir: {x: 0, y: 0, z: 0, w: 0}
+  charDir: {x: 0, y: 0, z: 0, w: 1}
   LevelStart: {fileID: 1847254995501236425, guid: ee0f2c768588bea4baa10f4815c54e20,
     type: 3}
   LevelEnd: {fileID: 4378500909985544572, guid: c0c37f2f44ed478459cba4dd81eb0bcb,
     type: 3}
   rooms:
-  - {fileID: 2508473323617497592, guid: d476cc96fa92a604a9013128e825907d, type: 3}
   - {fileID: 3740119510745053484, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
   - {fileID: 7121872374496664871, guid: 51671056d6d39d04aa1dc842ca219f02, type: 3}
   - {fileID: 5380563167502540184, guid: ad312f10d93335a4b96e0550190f7a03, type: 3}
+  - {fileID: 4702035219855880856, guid: d18e190cd722bdf47a0f4abc7a3f56ce, type: 3}
   - {fileID: 2605282951398482901, guid: cb9106b50fce2ec4a8b798b6eb5e25e4, type: 3}
   - {fileID: 1394854163865031819, guid: 3538984bb9ee88a4fb5e45ed0f0f7f09, type: 3}
   - {fileID: 8964830724592846419, guid: aacebb243d088dd4da4c404c7e9ba48a, type: 3}
+  - {fileID: 2508473323617497592, guid: d476cc96fa92a604a9013128e825907d, type: 3}
+  - {fileID: 4181409996708558401, guid: 12b91c9a235ecd84e94ea598d9b948ce, type: 3}
   weight:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
   - 20
-  - 1
-  - 1
-  - 1
-  - 0.1
-  - 1
-  - 1
   targetSize: 20
   space: 100
   bridgeProbability: 0.1
---- !u!4 &2050172823
+--- !u!4 &427465003
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2050172821}
+  m_GameObject: {fileID: 427465001}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 70.2, y: -14.5234375, z: 103.46875}
+  m_LocalPosition: {x: 16.784554, y: 85.39778, z: 37.754387}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
