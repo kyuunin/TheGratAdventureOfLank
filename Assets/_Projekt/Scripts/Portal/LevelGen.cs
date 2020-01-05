@@ -69,11 +69,13 @@ public class LevelGen : MonoBehaviour
             }
             generatedStartRoom = room;
         }
-        int width = (int)Mathf.Sqrt(targetSize);
+        int width = (int)Mathf.Pow(targetSize, 0.33f);
+        int hight = width;
         for (i = 1; i < targetSize; ++i)
         {
-            var x = i / width;
+            var x = i / width % hight;
             var y = i % width;
+            var z = i / width / hight;
             var exitPlane = RandomPop(queue);
             Plane entPlane;
             if (queue.Count > 1 && Random.Range(0.0f, 1.0f) < bridgeProbability) //Connect 2 existing rooms
@@ -87,7 +89,7 @@ public class LevelGen : MonoBehaviour
                 int currIter = 0;
                 while (true)
                 {
-                    obj = Object.Instantiate(GetRoom(), new Vector3(space * x, 0, space * y), Quaternion.identity);
+                    obj = Object.Instantiate(GetRoom(), new Vector3(space * x, space * z, space * y), Quaternion.identity);
                     room = obj.GetComponent<Room>();
                     //check if posible Level Layout
                     if (queue.Count == 0 && room.planes.Length == 1)
@@ -128,10 +130,11 @@ public class LevelGen : MonoBehaviour
             {
                 throw new System.Exception("coundn't get next room");
             }
-            var x = i / width;
+            var x = i / width % hight;
             var y = i % width;
+            var z = i / width / hight;
             var exitPlane = RandomPop(queue);
-            var obj = Object.Instantiate(GetRoom(), new Vector3(space * x, 0, space * y), Quaternion.identity);
+            var obj = Object.Instantiate(GetRoom(), new Vector3(space * x, space * z, space * y), Quaternion.identity);
             var room = obj.GetComponent<Room>();
             int entId = Random.Range(0, room.planes.Length); //choose entrance
             var entPlane = room.planes[entId];
@@ -146,10 +149,11 @@ public class LevelGen : MonoBehaviour
             ++i;
         }
         {
-            var x = i / width;
+            var x = i / width % hight;
             var y = i % width;
+            var z = i / width / hight;
             var exitPlane = RandomPop(queue);
-            var obj = Object.Instantiate(LevelEnd, new Vector3(space * x, 0, space * y), Quaternion.identity);
+            var obj = Object.Instantiate(LevelEnd, new Vector3(space * x, space * z, space * y), Quaternion.identity);
             var room = obj.GetComponent<Room>();
             var entPlane = room.planes[0];
             Lank(entPlane, exitPlane);
