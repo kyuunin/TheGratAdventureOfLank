@@ -754,6 +754,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   strafeSpeed: 3
+  gravity: 10
+  jumpSpeed: 7
   swordCollider: {fileID: 225162082}
   life: 16
   lifeDisplay: {fileID: 6517000371425845009}
