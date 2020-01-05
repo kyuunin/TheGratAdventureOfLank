@@ -10,12 +10,13 @@ public class CoinScript : MonoBehaviour
     public static int GetRequiredCoinCount()
     {
         float f = CoinsSpawned * 0.80f;
-        return (int) f;
+        return (int) Mathf.Ceil(f);
     }
 
     void Awake()
     {
         CoinsSpawned++;
+        Debug.Log("Coin Spawned!");
     }
     private void OnTriggerEnter(Collider other)
     {

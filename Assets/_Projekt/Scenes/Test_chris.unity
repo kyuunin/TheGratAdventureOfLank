@@ -20,11 +20,11 @@ RenderSettings:
   m_FogDensity: 0.01
   m_LinearFogStart: 0
   m_LinearFogEnd: 300
-  m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
+  m_AmbientSkyColor: {r: 0, g: 0, b: 0, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
   m_HaloStrength: 0.5
@@ -163,14 +163,16 @@ MonoBehaviour:
   - {fileID: 1394854163865031819, guid: 3538984bb9ee88a4fb5e45ed0f0f7f09, type: 3}
   - {fileID: 2605282951398482901, guid: cb9106b50fce2ec4a8b798b6eb5e25e4, type: 3}
   - {fileID: 8964830724592846419, guid: aacebb243d088dd4da4c404c7e9ba48a, type: 3}
+  - {fileID: 7121872374496664871, guid: 51671056d6d39d04aa1dc842ca219f02, type: 3}
   weight:
-  - 0
   - 1
   - 1
-  - 0
-  - 0
+  - 1
+  - 1
+  - 1
+  - 1
   targetSize: 20
-  space: 1000
+  space: 100
   bridgeProbability: 0.1
 --- !u!4 &2050172823
 Transform:
