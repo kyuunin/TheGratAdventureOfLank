@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 2508473323617497593}
   - component: {fileID: 2508473323617497590}
   m_Layer: 0
-  m_Name: BossRoom
+  m_Name: TreasureRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -257,7 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFirst: 0
-  planes: []
+  planes:
+  - {fileID: 7448700351599263194}
   mainCamera: {fileID: 0}
   CamPrefeb: {fileID: 1086520907866457113, guid: 8c3951664fb1e0d47a466b1684600dcd,
     type: 3}
@@ -14733,6 +14734,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2508473323943476150}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7448700351599263194 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5012782034743395948, guid: b29dc60d138be3c4f9ab21e177410909,
+    type: 3}
+  m_PrefabInstance: {fileID: 2508473323943476150}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b354a09867bec2c42b5a36bf00a717fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2508473323944132650
 PrefabInstance:
   m_ObjectHideFlags: 0
