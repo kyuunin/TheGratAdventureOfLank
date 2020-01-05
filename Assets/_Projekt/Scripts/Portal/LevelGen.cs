@@ -148,7 +148,6 @@ public class LevelGen : MonoBehaviour
 
     private void Start()
     {
-        //generatedStartRoom.SetRoomActiveExclusively();
         Room.CurrentPlayerRoom = generatedStartRoom;
     }
 }
