@@ -14,9 +14,6 @@ public class Plane : MonoBehaviour
     void Awake()
     {
         Init();
-        Debug.Log(Center);
-        Debug.Log(Normal);
-
     }
 
     private void OnTriggerExit(Collider other)
