@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6692374867222528751}
   - component: {fileID: 6853850924903222021}
   - component: {fileID: 6256487442045590037}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,8 +101,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 588686729880884508}
-  m_Layer: 0
-  m_Name: Torch (1)
+  m_Layer: 2
+  m_Name: Torch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

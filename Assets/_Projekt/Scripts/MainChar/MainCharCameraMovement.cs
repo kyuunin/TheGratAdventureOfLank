@@ -15,9 +15,12 @@ public class MainCharCameraMovement : MonoBehaviour
     Room lastCurrentRoom = null;
     void Update()
     {
-        transform.Rotate(0, Time.deltaTime * mouseSpeed * Input.GetAxis("Mouse X") * 180 / Mathf.PI, 0);
+        float mouseX = Input.GetAxis("Mouse X");
+        float mouseY = Input.GetAxis("Mouse Y");
 
-        pitch -= Time.deltaTime * mouseSpeed * Input.GetAxis("Mouse Y");
+        transform.Rotate(0, Time.deltaTime * mouseSpeed * mouseX * 180 / Mathf.PI, 0);
+
+        pitch -= Time.deltaTime * mouseSpeed * mouseY;
         while (pitch > Mathf.PI / 2) pitch = Mathf.PI / 2 - 0.001f;
         while (pitch < -Mathf.PI / 2) pitch = -Mathf.PI / 2 + 0.001f;
         
