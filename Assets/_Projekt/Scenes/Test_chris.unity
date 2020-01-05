@@ -164,13 +164,13 @@ MonoBehaviour:
   - {fileID: 2605282951398482901, guid: cb9106b50fce2ec4a8b798b6eb5e25e4, type: 3}
   - {fileID: 8964830724592846419, guid: aacebb243d088dd4da4c404c7e9ba48a, type: 3}
   weight:
-  - 0
   - 1
   - 1
-  - 0
-  - 0
+  - 1
+  - 1
+  - 1
   targetSize: 20
-  space: 1000
+  space: 100
   bridgeProbability: 0.1
 --- !u!4 &2050172823
 Transform:
