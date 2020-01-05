@@ -530,6 +530,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5602566321713746850}
   - component: {fileID: 4178743196540145104}
+  - component: {fileID: 5467460772564151547}
   m_Layer: 2
   m_Name: Head
   m_TagString: Untagged
@@ -632,6 +633,19 @@ SkinnedMeshRenderer:
     m_Center: {x: 0.07079685, y: 1.1079912, z: 2.3774571}
     m_Extent: {x: 1.2335172, y: 1.1039579, z: 2.386485}
   m_DirtyAABB: 0
+--- !u!114 &5467460772564151547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2595543123793664265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0723afd7f8586814aa7b326280d5e83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMaterial: {fileID: 2100000, guid: 0fcdb77caeb3eb447b357936148986bd, type: 2}
 --- !u!1 &2923606948921432065
 GameObject:
   m_ObjectHideFlags: 0
@@ -755,8 +769,9 @@ MonoBehaviour:
   speed: 5
   strafeSpeed: 3
   gravity: 10
-  jumpSpeed: 7
+  jumpSpeed: 13
   swordCollider: {fileID: 225162082}
+  dmgColorChanger: {fileID: 5467460772564151547}
   life: 16
   lifeDisplay: {fileID: 6517000371425845009}
 --- !u!114 &6517000372028115659

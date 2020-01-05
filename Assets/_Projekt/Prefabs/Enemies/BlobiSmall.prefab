@@ -17,7 +17,8 @@ GameObject:
   - component: {fileID: 2132468100731178437}
   - component: {fileID: 2132468100731178438}
   - component: {fileID: 2132468100731178439}
-  m_Layer: 0
+  - component: {fileID: 8606948623899087930}
+  m_Layer: 2
   m_Name: BlobiSmall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,6 +117,8 @@ MonoBehaviour:
   jumpHeight: 30
   jumpDistance: 20
   jumpTimeout: 3
+  knockbackJumpFactor: 1
+  knockbackMoveFactor: 1
   life: 5
 --- !u!136 &2132468100731178435
 CapsuleCollider:
@@ -171,3 +174,16 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 11.527233
   m_Center: {x: 1.2429104, y: 2.6796865, z: -0.96465063}
+--- !u!114 &8606948623899087930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132468100731178433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0723afd7f8586814aa7b326280d5e83d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMaterial: {fileID: 2100000, guid: 0fcdb77caeb3eb447b357936148986bd, type: 2}

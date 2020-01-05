@@ -16,6 +16,7 @@ public class MainCharMovementController : DamageReciever
     public bool IsJumping { get; set; } = false;
 
     public DamageCollider swordCollider;
+    public DamageColorChanger dmgColorChanger;
 
     public int life = 8;
     public HearthsDisplay lifeDisplay;
@@ -97,6 +98,7 @@ public class MainCharMovementController : DamageReciever
     public override void DoDamage()
     {
         Debug.Log("MainChar DoDamage()");
+        if (life > 0) dmgColorChanger.ShowDamage();
         life -= 1;
         if (life <= 0) Die();
         lifeDisplay.SetValue(life);
