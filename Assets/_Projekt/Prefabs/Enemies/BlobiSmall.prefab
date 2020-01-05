@@ -116,7 +116,7 @@ MonoBehaviour:
   jumpHeight: 30
   jumpDistance: 20
   jumpTimeout: 3
-  life: 3
+  life: 5
 --- !u!136 &2132468100731178435
 CapsuleCollider:
   m_ObjectHideFlags: 0
