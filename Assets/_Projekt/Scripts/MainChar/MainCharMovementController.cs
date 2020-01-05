@@ -10,6 +10,9 @@ public class MainCharMovementController : DamageReciever
 
     public float speed = 5.0f;
     public float strafeSpeed = 3.0f;
+    public float gravity = 10f;
+    public float jumpSpeed = 10.0f;
+    private Vector3 fallVec = Vector3.zero;
 
     public DamageCollider swordCollider;
 
@@ -27,7 +30,7 @@ public class MainCharMovementController : DamageReciever
         IsDead = false;
         lifeDisplay.SetValue(life);
     }
-    
+
     void Update()
     {
         if (!IsDead)
@@ -39,17 +42,32 @@ public class MainCharMovementController : DamageReciever
             controller.SimpleMove(move);
             animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
             animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
+            if (!controller.isGrounded)
+            {
+                fallVec.y -= gravity * Time.deltaTime;
+                controller.Move(fallVec * Time.deltaTime);
+            }
+            else
+            {
+                fallVec.y = 0;
+                if (Input.GetAxis("Jump") > 0.5)
+                {
+                    fallVec.y = jumpSpeed;
+                    controller.Move(fallVec * Time.deltaTime);
+                }
+            }
 
             if (Input.GetButtonDown("Fire1"))
             {
                 animator.SetTrigger("swordHit");
             }
         }
-        else if (Input.GetKey(KeyCode.Return)) {
+        else if (Input.GetKey(KeyCode.Return))
+        {
             //Application.LoadLevel(Application.loadedLevel);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             CoinScript.Reset();
-            
+
         }
     }
 
@@ -58,7 +76,8 @@ public class MainCharMovementController : DamageReciever
         return true;
     }
 
-    public void Die() {
+    public void Die()
+    {
         IsDead = true;
         animator.SetTrigger("die");
         lifeDisplay.Die();
