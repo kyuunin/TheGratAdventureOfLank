@@ -35,6 +35,13 @@ public class MainCharCameraMovement : MonoBehaviour
             plane = hit.collider.gameObject.GetComponent<Plane>();
             if (plane == null) currentDistance = hit.distance;
         }
+        
+        foreach (Collider c in Physics.OverlapSphere(cameraFocus.position, 0.01f, ~4, QueryTriggerInteraction.Collide))
+        {
+            var p = c.GetComponent<Plane>();
+            
+            if (p != null && Vector3.Dot(p.Normal, cameraVector) < 0) plane = p;
+        }
 
         movementCamera.transform.position = cameraFocus.position + cameraVector * currentDistance;
         movementCamera.transform.rotation = transform.rotation * Quaternion.Euler(pitch * 180 / Mathf.PI, 180,0 );
