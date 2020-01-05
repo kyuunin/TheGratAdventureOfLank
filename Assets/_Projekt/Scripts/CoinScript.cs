@@ -27,8 +27,10 @@ public class CoinScript : MonoBehaviour
         }
     }
 
-    private void Update()
+    private float angle = 0;
+    void Update()
     {
-        transform.rotation = Quaternion.Euler(0, Time.deltaTime * 360, 0);
+        angle += Time.deltaTime * 360f * 0.5f;
+        transform.rotation = Quaternion.Euler(0, angle, 0);
     }
 }

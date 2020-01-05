@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 42761776793308846}
   - component: {fileID: 6649210221596898154}
   - component: {fileID: 3300901425090111189}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cone.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 8828878598902312244}
   - component: {fileID: 2953359539122142505}
   - component: {fileID: 3748297428148270708}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: disk
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -181,7 +181,7 @@ GameObject:
   - component: {fileID: 5264673269142220690}
   - component: {fileID: 7909286227009956522}
   - component: {fileID: 6465721434333052098}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cone
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 8542713372256633177}
   - component: {fileID: 4279121132103529777}
   - component: {fileID: 4725061968044978466}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -351,7 +351,7 @@ GameObject:
   - component: {fileID: 5700783306711134058}
   - component: {fileID: 8441997071224744558}
   - component: {fileID: 4725017143094691867}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cone.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -427,7 +427,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5079336394463892278}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: triangle-pillar
   m_TagString: Untagged
   m_Icon: {fileID: 0}

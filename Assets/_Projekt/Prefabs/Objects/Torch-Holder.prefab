@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2420811514449794932}
   - component: {fileID: 6009953884416539616}
   - component: {fileID: 80413486179183613}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Cylinder.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -87,7 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7335348338440802656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8042499795065325026}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Torch-Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
