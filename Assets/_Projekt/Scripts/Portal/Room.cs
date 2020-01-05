@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+    public bool isFirst = false;
     public Plane[] planes;
     public GameObject[] Cam { get; set; }
     public Material[] Mats { get; set; }
@@ -57,7 +58,7 @@ public class Room : MonoBehaviour
                 Cam[i].GetComponent<Camera>().targetTexture = Tex;
                 Mats[i] = new Material(DefaultShader) { mainTexture = Tex };
                 planes[i].GetComponent<MeshRenderer>().material = Mats[i];
-                Cam[i].SetActive(false);
+                Cam[i].SetActive(isFirst);
             }
         }
     }
