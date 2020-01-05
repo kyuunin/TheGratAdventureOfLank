@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 2050172823}
   - component: {fileID: 2050172822}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Map Generator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,7 +153,7 @@ MonoBehaviour:
     type: 3}
   charPos: {x: 0, y: 0, z: 0}
   charDir: {x: 0, y: 0, z: 0, w: 0}
-  LevelStart: {fileID: 1394854163865031819, guid: 3538984bb9ee88a4fb5e45ed0f0f7f09,
+  LevelStart: {fileID: 1847254995501236425, guid: ee0f2c768588bea4baa10f4815c54e20,
     type: 3}
   LevelEnd: {fileID: 5380563167502540184, guid: ad312f10d93335a4b96e0550190f7a03,
     type: 3}

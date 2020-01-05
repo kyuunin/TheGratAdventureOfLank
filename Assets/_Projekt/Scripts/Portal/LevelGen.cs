@@ -29,8 +29,11 @@ public class LevelGen : MonoBehaviour
         return tmp;
     }
 
+    private Room generatedStartRoom;
+
     private void Awake()
     {
+
         int i;
         List<Plane> queue = new List<Plane>();
         {
@@ -40,6 +43,7 @@ public class LevelGen : MonoBehaviour
             {
                 queue.Add(plane);
             }
+            generatedStartRoom = room;
         }
         int width = (int)Mathf.Sqrt(targetSize);
         for (i = 1; i < targetSize; ++i)
@@ -138,5 +142,12 @@ public class LevelGen : MonoBehaviour
         }
 
         Object.Instantiate(mainChar, charPos, charDir);
+
+    }
+
+    private void Start()
+    {
+        //generatedStartRoom.SetRoomActiveExclusively();
+        Room.CurrentPlayerRoom = generatedStartRoom;
     }
 }

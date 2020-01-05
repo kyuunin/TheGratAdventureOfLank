@@ -30,8 +30,7 @@ public class Room : MonoBehaviour
             plane.cam.SetActive(state);
         }
     }
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
