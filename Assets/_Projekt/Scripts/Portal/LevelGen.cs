@@ -10,6 +10,7 @@ public class LevelGen : MonoBehaviour
     public GameObject LevelStart;
     public GameObject LevelEnd;
     public GameObject[] rooms;
+    public float[] weight;
     public int targetSize;
     public float space;
     public float bridgeProbability;
@@ -28,9 +29,34 @@ public class LevelGen : MonoBehaviour
         plane.RemoveAt(plane.Count - 1);
         return tmp;
     }
+    void InitWeight()
+    {
+        if (weight.Length != rooms.Length) throw new System.Exception("weight and rooms should have the same length");
+        for (var i = 1; i < weight.Length; i++)
+        {
+            weight[i] += weight[i - 1];
+        }
+    }
+    GameObject GetRoom()
+    {
+        var val = Random.Range(0, weight[weight.Length - 1]);
+        for (var i = 0; i < weight.Length; ++i)
+        {
+            if (weight[i] >= val)
+            {
+                Debug.Log(i);
+                Debug.Log(val);
+                return rooms[i];
+            }
+        }
+        throw new System.Exception("something didn't work");
+    }
+
+    private Room generatedStartRoom;
 
     private void Awake()
     {
+        InitWeight();
         int i;
         List<Plane> queue = new List<Plane>();
         {
@@ -41,6 +67,7 @@ public class LevelGen : MonoBehaviour
             {
                 queue.Add(plane);
             }
+            generatedStartRoom = room;
         }
         int width = (int)Mathf.Sqrt(targetSize);
         for (i = 1; i < targetSize; ++i)
@@ -60,7 +87,7 @@ public class LevelGen : MonoBehaviour
                 int currIter = 0;
                 while (true)
                 {
-                    obj = Object.Instantiate(rooms[Random.Range(0, rooms.Length)], new Vector3(space * x, 0, space * y), Quaternion.identity);
+                    obj = Object.Instantiate(GetRoom(), new Vector3(space * x, 0, space * y), Quaternion.identity);
                     room = obj.GetComponent<Room>();
                     //check if posible Level Layout
                     if (queue.Count == 0 && room.planes.Length == 1)
@@ -104,7 +131,7 @@ public class LevelGen : MonoBehaviour
             var x = i / width;
             var y = i % width;
             var exitPlane = RandomPop(queue);
-            var obj = Object.Instantiate(rooms[Random.Range(0, rooms.Length)], new Vector3(space * x, 0, space * y), Quaternion.identity);
+            var obj = Object.Instantiate(GetRoom(), new Vector3(space * x, 0, space * y), Quaternion.identity);
             var room = obj.GetComponent<Room>();
             int entId = Random.Range(0, room.planes.Length); //choose entrance
             var entPlane = room.planes[entId];
@@ -139,5 +166,11 @@ public class LevelGen : MonoBehaviour
         }
 
         Object.Instantiate(mainChar, charPos, charDir);
+
+    }
+
+    private void Start()
+    {
+        Room.CurrentPlayerRoom = generatedStartRoom;
     }
 }

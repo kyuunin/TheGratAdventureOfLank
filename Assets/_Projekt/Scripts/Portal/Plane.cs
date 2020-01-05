@@ -10,22 +10,11 @@ public class Plane : MonoBehaviour
     public Plane Brother;
     public Room Parent;
 
-
-    // Start is called before the first frame update
-    void Start()
+    
+    void Awake()
     {
         Init();
-        Debug.Log(Center);
-        Debug.Log(Normal);
-
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     private void OnTriggerExit(Collider other)
     {
