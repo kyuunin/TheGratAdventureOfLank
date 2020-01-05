@@ -47,7 +47,6 @@ public class MainCharCameraMovement : MonoBehaviour
             movementCamera.transform.position = RelHiddenPos + plane.Brother.Center;
             movementCamera.transform.rotation = Rot * movementCamera.transform.rotation;
         }
-        else if(lastCurrentRoom != null)
-            lastCurrentRoom.SetRoomActiveExclusively();
+        else Room.CurrentPlayerRoom.SetRoomActiveExclusively();
     }
 }
