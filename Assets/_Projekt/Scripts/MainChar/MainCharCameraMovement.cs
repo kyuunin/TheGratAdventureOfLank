@@ -6,6 +6,7 @@ public class MainCharCameraMovement : MonoBehaviour
 {
     public Camera movementCamera;
     public Transform cameraFocus;
+    public Transform[] planeDetectionPoints;
 
     public  float pitch = 0.0f;
     public float cameraCollisionOffset = 0.1f;
@@ -31,17 +32,25 @@ public class MainCharCameraMovement : MonoBehaviour
 
         Plane plane = null;
         RaycastHit hit;
-        if(Physics.Raycast(cameraFocus.position, cameraVector, out hit, distance, ~4)) {
+        if(Physics.Raycast(cameraFocus.position, cameraVector, out hit, distance - 1f, ~4)) {
             plane = hit.collider.gameObject.GetComponent<Plane>();
-            if (plane == null) currentDistance = hit.distance;
+            if (plane == null)
+                currentDistance = hit.distance;
+
+            if (plane != null && Vector3.Dot(plane.Normal, cameraVector) > 0)
+                plane = null;
         }
         
-        foreach (Collider c in Physics.OverlapSphere(cameraFocus.position, 0.01f, ~4, QueryTriggerInteraction.Collide))
+        foreach(Transform detectPoint in planeDetectionPoints)
         {
-            var p = c.GetComponent<Plane>();
-            
-            if (p != null && Vector3.Dot(p.Normal, cameraVector) < 0) plane = p;
+            foreach (Collider c in Physics.OverlapSphere(detectPoint.position, 0.01f, ~4, QueryTriggerInteraction.Collide))
+            {
+                var p = c.GetComponent<Plane>();
+
+                if (p != null && Vector3.Dot(p.Normal, cameraVector) < 0) plane = p;
+            }
         }
+
 
         movementCamera.transform.position = cameraFocus.position + cameraVector * currentDistance;
         movementCamera.transform.rotation = transform.rotation * Quaternion.Euler(pitch * 180 / Mathf.PI, 180,0 );
