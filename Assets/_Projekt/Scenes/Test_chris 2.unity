@@ -158,19 +158,23 @@ MonoBehaviour:
   LevelEnd: {fileID: 4378500909985544572, guid: c0c37f2f44ed478459cba4dd81eb0bcb,
     type: 3}
   rooms:
-  - {fileID: 2508473323617497592, guid: d476cc96fa92a604a9013128e825907d, type: 3}
   - {fileID: 3740119510745053484, guid: e0d1d22e6e84a3c4b81aa3fa9d45670c, type: 3}
   - {fileID: 7121872374496664871, guid: 51671056d6d39d04aa1dc842ca219f02, type: 3}
   - {fileID: 5380563167502540184, guid: ad312f10d93335a4b96e0550190f7a03, type: 3}
+  - {fileID: 4702035219855880856, guid: d18e190cd722bdf47a0f4abc7a3f56ce, type: 3}
   - {fileID: 2605282951398482901, guid: cb9106b50fce2ec4a8b798b6eb5e25e4, type: 3}
+  - {fileID: 98702907246398308, guid: 50b302b2150b41e468b389a372e49b6f, type: 3}
   - {fileID: 1394854163865031819, guid: 3538984bb9ee88a4fb5e45ed0f0f7f09, type: 3}
   - {fileID: 8964830724592846419, guid: aacebb243d088dd4da4c404c7e9ba48a, type: 3}
+  - {fileID: 2508473323617497592, guid: d476cc96fa92a604a9013128e825907d, type: 3}
   weight:
   - 1
   - 1
   - 1
   - 1
   - 0.1
+  - 20
+  - 1
   - 1
   - 1
   targetSize: 20
