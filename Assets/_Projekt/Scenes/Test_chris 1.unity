@@ -177,7 +177,7 @@ MonoBehaviour:
   - 1
   - 1
   - 0.5
-  targetSize: 20
+  targetSize: 1
   space: 100
   bridgeProbability: 0.1
 --- !u!4 &2050172823
