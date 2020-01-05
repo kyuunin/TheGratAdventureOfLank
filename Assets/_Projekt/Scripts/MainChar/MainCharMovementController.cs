@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainCharMovementController : DamageReciever
 {
@@ -14,6 +15,7 @@ public class MainCharMovementController : DamageReciever
 
     public int life = 8;
     public HearthsDisplay lifeDisplay;
+    public bool IsDead { get; set; }
 
     void Start()
     {
@@ -22,23 +24,32 @@ public class MainCharMovementController : DamageReciever
         animator.GetBehaviour<SwordHitAnimationBehaviour>().swordCollider = swordCollider;
 
         Cursor.lockState = CursorLockMode.Locked;
-
+        IsDead = false;
         lifeDisplay.SetValue(life);
     }
     
     void Update()
     {
-        var move = new Vector3(0, 0, 0);
-        move -= transform.forward * speed * Input.GetAxis("Vertical");
-        move -= transform.right * strafeSpeed * Input.GetAxis("Horizontal");
-
-        controller.SimpleMove(move);
-        animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
-        animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
-
-        if(Input.GetButtonDown("Fire1"))
+        if (!IsDead)
         {
-            animator.SetTrigger("swordHit");
+            var move = new Vector3(0, 0, 0);
+            move -= transform.forward * speed * Input.GetAxis("Vertical");
+            move -= transform.right * strafeSpeed * Input.GetAxis("Horizontal");
+
+            controller.SimpleMove(move);
+            animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
+            animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
+
+            if (Input.GetButtonDown("Fire1"))
+            {
+                animator.SetTrigger("swordHit");
+            }
+        }
+        else if (Input.GetKey(KeyCode.Return)) {
+            //Application.LoadLevel(Application.loadedLevel);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            CoinScript.Reset();
+            
         }
     }
 
@@ -47,10 +58,17 @@ public class MainCharMovementController : DamageReciever
         return true;
     }
 
+    public void Die() {
+        IsDead = true;
+        animator.SetTrigger("die");
+        lifeDisplay.Die();
+    }
+
     public override void DoDamage()
     {
         Debug.Log("MainChar DoDamage()");
         life -= 1;
+        if (life <= 0) Die();
         lifeDisplay.SetValue(life);
     }
 }

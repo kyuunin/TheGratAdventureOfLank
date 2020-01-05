@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -40,5 +41,11 @@ public class CoinScript : MonoBehaviour
             angle += Time.deltaTime * 360f * 0.5f;
             transform.rotation = Quaternion.Euler(0, angle, 0);
         }
+    }
+
+    public static void Reset()
+    {
+        CoinsCollected = 0;
+        CoinsSpawned = 0;
     }
 }
