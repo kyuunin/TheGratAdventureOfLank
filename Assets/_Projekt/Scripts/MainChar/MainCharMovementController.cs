@@ -12,7 +12,8 @@ public class MainCharMovementController : DamageReciever
 
     public DamageCollider swordCollider;
 
-    public int life = 5;
+    public int life = 8;
+    public HearthsDisplay lifeDisplay;
 
     void Start()
     {
@@ -21,6 +22,8 @@ public class MainCharMovementController : DamageReciever
         animator.GetBehaviour<SwordHitAnimationBehaviour>().swordCollider = swordCollider;
 
         Cursor.lockState = CursorLockMode.Locked;
+
+        lifeDisplay.SetValue(life);
     }
     
     void Update()
@@ -48,5 +51,6 @@ public class MainCharMovementController : DamageReciever
     {
         Debug.Log("MainChar DoDamage()");
         life -= 1;
+        lifeDisplay.SetValue(life);
     }
 }
