@@ -22,6 +22,9 @@ public class MainCharMovementController : DamageReciever
     public HearthsDisplay lifeDisplay;
     public bool IsDead { get; set; }
 
+    public AudioSource audioFootSteps;
+    public AudioSource audioJumpEnd;
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -42,6 +45,10 @@ public class MainCharMovementController : DamageReciever
             move -= transform.right * strafeSpeed * Input.GetAxis("Horizontal");
 
             controller.SimpleMove(move);
+
+            if (controller.isGrounded) audioFootSteps.volume = move.magnitude * 0.5f;
+            else audioFootSteps.volume = 0;
+
             animator.SetFloat("forwardSpeed", Input.GetAxis("Vertical"));
             animator.SetFloat("sidestepSpeed", Input.GetAxis("Horizontal"));
             if (!controller.isGrounded)
@@ -54,6 +61,7 @@ public class MainCharMovementController : DamageReciever
                 fallVec.y = 0;
                 if (IsJumping)
                 {
+                    audioJumpEnd.Play();
                     animator.SetTrigger("jumpEnd");
                     IsJumping = false;
                 }

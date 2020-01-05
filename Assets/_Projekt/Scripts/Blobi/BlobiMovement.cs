@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BlobiMovement : DamageReciever
 {
+    public AudioSource audioHit;
+
     public float maxDistance = 20.0f;
     public float jumpHeight = 1.0f;
     public float jumpDistance = 1.0f;
@@ -22,8 +24,15 @@ public class BlobiMovement : DamageReciever
     public override void DoDamage()
     {
         Debug.Log("Blobi DoDamage()");
+        audioHit.Play();
         life -= 1;
-        if (life == 0) Destroy(gameObject);
+        if (life == 0)
+        {
+            audioHit.transform.parent = transform.parent; // Detach audio source to not destroy it, we want to hear the sound
+            Destroy(audioHit.gameObject, 2.0f); // clean up sound after use
+
+            Destroy(gameObject);
+        }
         else
         {
             GetComponent<DamageColorChanger>().ShowDamage();
