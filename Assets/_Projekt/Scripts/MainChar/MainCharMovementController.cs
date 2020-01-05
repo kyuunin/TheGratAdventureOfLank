@@ -59,9 +59,12 @@ public class MainCharMovementController : DamageReciever
     }
 
     public void Die() {
-        IsDead = true;
-        animator.SetTrigger("die");
-        lifeDisplay.Die();
+        if (!IsDead)
+        {
+            IsDead = true;
+            animator.SetTrigger("die");
+            lifeDisplay.Die();
+        }
     }
 
     public override void DoDamage()
