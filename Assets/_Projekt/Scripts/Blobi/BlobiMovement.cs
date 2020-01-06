@@ -15,6 +15,7 @@ public class BlobiMovement : DamageReceiver
     public float knockbackMoveFactor = 1.0f;
 
     public int life = 3;
+    public bool gameWonAfterKill = false;
 
     private Rigidbody rigidb;
     private Transform target;
@@ -31,6 +32,8 @@ public class BlobiMovement : DamageReceiver
             audioHit.transform.parent = transform.parent; // Detach audio source to not destroy it, we want to hear the sound
             Destroy(audioHit.gameObject, 2.0f); // clean up sound after use
 
+            if (gameWonAfterKill)
+                GameObject.FindGameObjectWithTag("Player").GetComponent<WinScreenDisplay>().Win();
             Destroy(gameObject);
         }
         else
