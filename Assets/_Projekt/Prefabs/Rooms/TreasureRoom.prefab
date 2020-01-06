@@ -4052,6 +4052,8 @@ MonoBehaviour:
   shouldRotate: 0
   spawnOnCollect: {fileID: 9002833594087820984, guid: 529be6f99435ffb4495f6cf3989209ca,
     type: 3}
+  collectSoundPrefab: {fileID: 4912581407786626074, guid: 983c51c84b5d28a4e8149dde77bae232,
+    type: 3}
 --- !u!1 &6572459830097785492
 GameObject:
   m_ObjectHideFlags: 0
@@ -4158,6 +4160,8 @@ MonoBehaviour:
   value: 2
   shouldRotate: 0
   spawnOnCollect: {fileID: 9002833594087820984, guid: 529be6f99435ffb4495f6cf3989209ca,
+    type: 3}
+  collectSoundPrefab: {fileID: 4912581407786626074, guid: 983c51c84b5d28a4e8149dde77bae232,
     type: 3}
 --- !u!1 &8889395220046761762
 GameObject:

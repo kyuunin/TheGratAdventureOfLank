@@ -771,7 +771,7 @@ MonoBehaviour:
   speed: 5
   strafeSpeed: 3
   gravity: 10
-  jumpSpeed: 13
+  jumpSpeed: 6
   swordCollider: {fileID: 225162082}
   dmgColorChanger: {fileID: 5467460772564151547}
   life: 16
