@@ -11,7 +11,7 @@ public class DamageCollider : MonoBehaviour
     {
         if (!isEnabled) return;
 
-        var recv = collision.gameObject.GetComponent<DamageReciever>();
+        var recv = collision.gameObject.GetComponent<DamageReceiver>();
         if (recv!=null&&recv.IsPlayer() != isPlayerWeapon)
         {
             Debug.Log("DamageCollider: do Damage");

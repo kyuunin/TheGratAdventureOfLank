@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BlobiMovement : DamageReciever
+public class BlobiMovement : DamageReceiver
 {
     public AudioSource audioHit;
 

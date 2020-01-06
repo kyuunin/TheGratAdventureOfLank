@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainCharMovementController : DamageReciever
+public class MainCharMovementController : DamageReceiver, ICanHeal
 {
+    private const int MAX_LIFE = 16;
+
     private Animator animator;
     private CharacterController controller;
 
@@ -18,7 +20,7 @@ public class MainCharMovementController : DamageReciever
     public DamageCollider swordCollider;
     public DamageColorChanger dmgColorChanger;
 
-    public int life = 8;
+    public int life = MAX_LIFE;
     public HearthsDisplay lifeDisplay;
     public bool IsDead { get; set; }
 
@@ -109,6 +111,12 @@ public class MainCharMovementController : DamageReciever
         if (life > 0) dmgColorChanger.ShowDamage();
         life -= 1;
         if (life <= 0) Die();
+        lifeDisplay.SetValue(life);
+    }
+
+    public void RecoverFullHealth()
+    {
+        life = MAX_LIFE;
         lifeDisplay.SetValue(life);
     }
 }
