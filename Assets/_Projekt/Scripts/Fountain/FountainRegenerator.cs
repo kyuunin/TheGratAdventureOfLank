@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class FountainRegenerator : MonoBehaviour
 {
+    public GameObject HealSoundPrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,9 @@ public class FountainRegenerator : MonoBehaviour
             var canHeal = (ICanHeal)mainCharMovementControllerAsComponent;
 
             canHeal.RecoverFullHealth();
+
+            var sound = Instantiate(HealSoundPrefab);
+            Destroy(sound, 2.0f);
         }
     }
 }
