@@ -249,6 +249,7 @@ MonoBehaviour:
   knockbackJumpFactor: 0
   knockbackMoveFactor: 0
   life: 50
+  gameWonAfterKill: 1
 --- !u!136 &9138325661834215632
 CapsuleCollider:
   m_ObjectHideFlags: 0
