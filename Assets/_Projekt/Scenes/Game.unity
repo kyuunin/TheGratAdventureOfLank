@@ -171,13 +171,13 @@ MonoBehaviour:
   weight:
   - 10
   - 10
+  - 15
+  - 10
+  - 5
+  - 13
   - 10
   - 10
-  - 10
-  - 10
-  - 10
-  - 10
-  - 10
+  - 5
   - 8
   targetSize: 20
   space: 100
@@ -212,7 +212,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!82 &756940834
 AudioSource:
   m_ObjectHideFlags: 0
