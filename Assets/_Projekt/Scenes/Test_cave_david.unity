@@ -256,55 +256,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1858077684289273439, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: Parent
-      value: 
-      objectReference: {fileID: 2028291830}
-    - target: {fileID: 1858077684318728297, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: Parent
-      value: 
-      objectReference: {fileID: 2028291830}
-    - target: {fileID: 1858077684318728293, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858077684318728293, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858077684318728293, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858077684318728293, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1858077684318728293, guid: 9642ca0b1023a98498e03ffefe594ffc,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9642ca0b1023a98498e03ffefe594ffc, type: 3}
---- !u!114 &2028291830 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9048270530405205316, guid: 9642ca0b1023a98498e03ffefe594ffc,
-    type: 3}
-  m_PrefabInstance: {fileID: 2009699485}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b8cddb965ed8fe43a1d8723a8ee5789, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &6517000371781369953
 PrefabInstance:
   m_ObjectHideFlags: 0
