@@ -256,11 +256,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1142300516, guid: 9642ca0b1023a98498e03ffefe594ffc, type: 3}
-      propertyPath: HealSoundPrefab
-      value: 
-      objectReference: {fileID: 4912581407786626074, guid: 2cdc9a4694c25e547bf8b9a546a2dddf,
-        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9642ca0b1023a98498e03ffefe594ffc, type: 3}
 --- !u!1001 &6517000371781369953

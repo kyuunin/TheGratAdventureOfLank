@@ -288,6 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d6abd25f32707f4293a0f1b948ae63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HealSoundPrefab: {fileID: 4912581407786626074, guid: 2cdc9a4694c25e547bf8b9a546a2dddf,
+    type: 3}
 --- !u!1 &292167587505523032
 GameObject:
   m_ObjectHideFlags: 0
