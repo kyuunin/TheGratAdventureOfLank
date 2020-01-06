@@ -10,7 +10,6 @@ public class Plane : MonoBehaviour
     public Plane Brother {get;set;}
     public Room Parent { get; set; }
 
-
     void Awake()
     {
         Init();
@@ -42,7 +41,6 @@ public class Plane : MonoBehaviour
         }
 
     }
-
 
     void Init()
     {

@@ -4,34 +4,34 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public bool isFirst = false;
+    public bool isFirst { get; set; } = false;
     public Plane[] planes;
     public GameObject[] Cam { get; set; }
     public Material[] Mats { get; set; }
     public bool Entered { get; set; }
     public Camera mainCamera { get; set; }
     public GameObject CamPrefeb { get; set; }
-    public Shader DefaultShader;
-
+    public Shader DefaultShader { get; set; }
     public static Room CurrentPlayerRoom { get; set; }
-
     private static Room lastRoomActive = null;
+
     public void SetRoomActiveExclusively()
     {
         if (lastRoomActive == this) return;
 
-        if(lastRoomActive) lastRoomActive.SetRoomActive(false);
+        if (lastRoomActive) lastRoomActive.SetRoomActive(false);
         lastRoomActive = this;
         this.SetRoomActive(true);
     }
 
-    private void SetRoomActive(bool state) {
+    private void SetRoomActive(bool state)
+    {
         foreach (Plane plane in planes)
         {
             plane.cam.SetActive(state);
         }
     }
-    
+
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
@@ -46,7 +46,7 @@ public class Room : MonoBehaviour
             Entered = true;
             Cam = new GameObject[planes.Length];
             Mats = new Material[planes.Length];
-            for (var i = 0; i< planes.Length; ++i)
+            for (var i = 0; i < planes.Length; ++i)
             {
                 Cam[i] = Object.Instantiate(CamPrefeb);
                 var CamCont = Cam[i].GetComponent<CameraController>();
@@ -62,5 +62,5 @@ public class Room : MonoBehaviour
             }
         }
     }
-    
+
 }

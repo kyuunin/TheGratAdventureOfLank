@@ -15,6 +15,7 @@ public class LevelGen : MonoBehaviour
     public float space;
     public float bridgeProbability;
     public GameObject CamPrefeb;
+    public Shader DefaultShader;
 
     void Lank(Plane p1, Plane p2)
     {
@@ -30,6 +31,7 @@ public class LevelGen : MonoBehaviour
         plane.RemoveAt(plane.Count - 1);
         return tmp;
     }
+
     void InitWeight()
     {
         if (weight.Length != rooms.Length) throw new System.Exception("weight and rooms should have the same length");
@@ -38,6 +40,7 @@ public class LevelGen : MonoBehaviour
             weight[i] += weight[i - 1];
         }
     }
+
     GameObject GetRoom()
     {
         var val = Random.Range(0, weight[weight.Length - 1]);
@@ -79,12 +82,12 @@ public class LevelGen : MonoBehaviour
         }
     }
 
-
     (GameObject, Room) CreateRoom(GameObject RoomPrefab, int i)
     {
         GameObject obj = Object.Instantiate(RoomPrefab, CreateVector(i), Quaternion.identity);
         Room room = obj.GetComponent<Room>();
         room.CamPrefeb = CamPrefeb;
+        room.DefaultShader = DefaultShader;
         return (obj, room);
     }
 
@@ -94,7 +97,7 @@ public class LevelGen : MonoBehaviour
         int i;
         List<Plane> queue = new List<Plane>();
         {
-            (var obj,var room) = CreateRoom(LevelStart, 0);
+            (var obj, var room) = CreateRoom(LevelStart, 0);
             room.isFirst = true;
             PushAll(queue, room);
             generatedStartRoom = room;
