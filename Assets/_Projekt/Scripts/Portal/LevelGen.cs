@@ -94,7 +94,7 @@ public class LevelGen : MonoBehaviour
         int i;
         List<Plane> queue = new List<Plane>();
         {
-            (var obj, var room) = CreateRoom(LevelStart, 0);
+            (var obj,var room) = CreateRoom(LevelStart, 0);
             room.isFirst = true;
             PushAll(queue, room);
             generatedStartRoom = room;
@@ -113,13 +113,18 @@ public class LevelGen : MonoBehaviour
             {
                 GameObject obj;
                 Room room;
+                int currIter = 0;
                 while (true)
                 {
-                    (obj, room) = CreateRoom(LevelStart, i);
+                    (obj, room) = CreateRoom(GetRoom(), i);
                     //check if posible Level Layout
                     if (queue.Count == 0 && room.planes.Length == 1)
                     {
-                        Destroy(obj)
+                        Destroy(obj);
+                        if (currIter++ == 100)
+                        {
+                            throw new System.Exception("coundn't get next room");
+                        }
                     }
                     else
                     {
@@ -134,14 +139,19 @@ public class LevelGen : MonoBehaviour
         }
         if (queue.Count == 0)
             throw new System.Exception("Es gibt keine Räume mehr");
+        var currIter2 = 0;
         while (true)
         {
             if (queue.Count % 2 == 1)
             {
                 break;
             }
+            if (currIter2++ == 100)
+            {
+                throw new System.Exception("coundn't get next room");
+            }
             var exitPlane = RandomPop(queue);
-            (var obj, var room) = CreateRoom(LevelStart, i);
+            (var obj, var room) = CreateRoom(GetRoom(), i);
             int entId = Random.Range(0, room.planes.Length); //choose entrance
             var entPlane = room.planes[entId];
             PushAll(queue, room, entId);
@@ -150,7 +160,7 @@ public class LevelGen : MonoBehaviour
         }
         {
             var exitPlane = RandomPop(queue);
-            (var obj, var room) = CreateRoom(LevelStart, i);
+            (var obj, var room) = CreateRoom(LevelEnd, i);
             var entPlane = room.planes[0];
             entPlane.Parent = room;
             Lank(entPlane, exitPlane);
