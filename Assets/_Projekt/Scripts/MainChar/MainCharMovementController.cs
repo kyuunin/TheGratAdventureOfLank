@@ -99,6 +99,7 @@ public class MainCharMovementController : DamageReceiver, ICanHeal
     {
         if (!IsDead)
         {
+            GameObject.FindObjectOfType<MusicManager>().PlayDeadMusic();
             IsDead = true;
             animator.SetTrigger("die");
             lifeDisplay.Die();

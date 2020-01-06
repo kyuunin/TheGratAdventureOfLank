@@ -18,7 +18,7 @@ public class WinScreenDisplay : MonoBehaviour
     {
         isWon = true;
         winText.gameObject.SetActive(true);
-
+        GameObject.FindObjectOfType<MusicManager>().PlayWinMusic();
     }
 
     private void Update()

@@ -5,9 +5,14 @@ using UnityEngine;
 public class GateLockInTriggerScript : MonoBehaviour
 {
     public GameObject gate;
+    public bool gateClosed = false;
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        if (other.gameObject.CompareTag("Player") && !gateClosed)
+        {
+            gateClosed = true;
             gate.SetActive(true);
+            GameObject.FindObjectOfType<MusicManager>().PlayBossMusic();
+        }
     }
 }
