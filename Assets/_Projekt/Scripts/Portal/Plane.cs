@@ -10,7 +10,7 @@ public class Plane : MonoBehaviour
     public Plane Brother;
     public Room Parent;
 
-    
+
     void Awake()
     {
         Init();
@@ -18,12 +18,12 @@ public class Plane : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        var cc = other.GetComponent<CharacterController>();
-        
-        var pos = other.transform.TransformPoint(cc.center)-Center;
+        CharacterController cc = other.GetComponent<CharacterController>();
+        if (cc == null) return;
+        var pos = other.transform.TransformPoint(cc.center) - Center;
         var dir = Vector3.Dot(pos, Normal);
-        
-        if(dir<0)
+
+        if (dir < 0)
         {
             cc.enabled = false;
             {
@@ -40,12 +40,13 @@ public class Plane : MonoBehaviour
             }
             cc.enabled = true;
         }
-        
-    }
-    
 
-    void Init() {
+    }
+
+
+    void Init()
+    {
         Center = transform.position;
-        Normal = transform.rotation * new Vector3(0,1,0);
+        Normal = transform.rotation * new Vector3(0, 1, 0);
     }
 }
