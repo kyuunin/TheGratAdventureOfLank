@@ -11,6 +11,7 @@ public class CoinScript : MonoBehaviour
     public int value = 1;
     public bool shouldRotate = true;
     public GameObject spawnOnCollect = null;
+    public GameObject collectSoundPrefab;
 
     public static int GetRequiredCoinCount()
     {
@@ -29,7 +30,11 @@ public class CoinScript : MonoBehaviour
             CoinsCollected += value;
             if (spawnOnCollect != null)
                 Instantiate(spawnOnCollect, transform.position, Quaternion.Euler(-90,0,0), transform.parent);
-            Destroy(gameObject, 0.1f);
+
+            var sound = Instantiate(collectSoundPrefab);
+            Destroy(sound, 2.0f);
+
+            Destroy(gameObject, 0.05f);
         }
     }
 

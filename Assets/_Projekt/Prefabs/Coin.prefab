@@ -105,3 +105,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc0a05b83277e1842ba9489dcaa67cbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value: 1
+  shouldRotate: 1
+  spawnOnCollect: {fileID: 0}
+  collectSoundPrefab: {fileID: 4912581407786626074, guid: 983c51c84b5d28a4e8149dde77bae232,
+    type: 3}
