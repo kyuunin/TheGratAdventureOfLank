@@ -6,9 +6,9 @@ public class Plane : MonoBehaviour
 {
     public Vector3 Center { get; set; }
     public Vector3 Normal { get; set; }
-    public GameObject cam;
-    public Plane Brother;
-    public Room Parent;
+    public GameObject cam { get; set; }
+    public Plane Brother {get;set;}
+    public Room Parent { get; set; }
 
 
     void Awake()

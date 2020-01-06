@@ -9,8 +9,8 @@ public class Room : MonoBehaviour
     public GameObject[] Cam { get; set; }
     public Material[] Mats { get; set; }
     public bool Entered { get; set; }
-    public Camera mainCamera;
-    public GameObject CamPrefeb;
+    public Camera mainCamera { get; set; }
+    public GameObject CamPrefeb { get; set; }
     public Shader DefaultShader;
 
     public static Room CurrentPlayerRoom { get; set; }

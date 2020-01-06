@@ -14,6 +14,7 @@ public class LevelGen : MonoBehaviour
     public int targetSize;
     public float space;
     public float bridgeProbability;
+    public GameObject CamPrefeb;
 
     void Lank(Plane p1, Plane p2)
     {
@@ -44,8 +45,6 @@ public class LevelGen : MonoBehaviour
         {
             if (weight[i] >= val)
             {
-                Debug.Log(i);
-                Debug.Log(val);
                 return rooms[i];
             }
         }
@@ -66,25 +65,44 @@ public class LevelGen : MonoBehaviour
         return new Vector3(space * x, space * y, space * z);
     }
 
+    void PushAll(List<Plane> queue, Room room, int block = -1)
+    {
+
+        for (var j = 0; j < room.planes.Length; ++j)
+        {
+            room.planes[j].Parent = room;
+            room.planes[j].cam = CamPrefeb;
+            if (j != block)
+            {
+                queue.Add(room.planes[j]);
+            }
+        }
+    }
+
+
+    (GameObject, Room) CreateRoom(GameObject RoomPrefab, int i)
+    {
+        GameObject obj = Object.Instantiate(RoomPrefab, CreateVector(i), Quaternion.identity);
+        Room room = obj.GetComponent<Room>();
+        room.CamPrefeb = CamPrefeb;
+        return (obj, room);
+    }
+
     private void Awake()
     {
         InitWeight();
         int i;
         List<Plane> queue = new List<Plane>();
         {
-            var obj = Object.Instantiate(LevelStart, Vector3.zero, Quaternion.identity);
-            var room = obj.GetComponent<Room>();
+            (var obj, var room) = CreateRoom(LevelStart, 0);
             room.isFirst = true;
-            foreach (Plane plane in room.planes)
-            {
-                queue.Add(plane);
-            }
+            PushAll(queue, room);
             generatedStartRoom = room;
         }
-        
+
         for (i = 1; i < targetSize; ++i)
         {
-            
+
             var exitPlane = RandomPop(queue);
             Plane entPlane;
             if (queue.Count > 1 && Random.Range(0.0f, 1.0f) < bridgeProbability) //Connect 2 existing rooms
@@ -95,19 +113,13 @@ public class LevelGen : MonoBehaviour
             {
                 GameObject obj;
                 Room room;
-                int currIter = 0;
                 while (true)
                 {
-                    obj = Object.Instantiate(GetRoom(), CreateVector(i), Quaternion.identity);
-                    room = obj.GetComponent<Room>();
+                    (obj, room) = CreateRoom(LevelStart, i);
                     //check if posible Level Layout
                     if (queue.Count == 0 && room.planes.Length == 1)
                     {
-                        Destroy(obj);
-                        if (currIter++ == 100)
-                        {
-                            throw new System.Exception("coundn't get next room");
-                        }
+                        Destroy(obj)
                     }
                     else
                     {
@@ -116,49 +128,31 @@ public class LevelGen : MonoBehaviour
                 }
                 int entId = Random.Range(0, room.planes.Length); //choose entrance
                 entPlane = room.planes[entId];
-                for (var j = 0; j < room.planes.Length; ++j)
-                {
-                    if (j != entId)
-                    {
-                        queue.Add(room.planes[j]);
-                    }
-                }
+                PushAll(queue, room, entId);
             }
             Lank(entPlane, exitPlane);
         }
         if (queue.Count == 0)
             throw new System.Exception("Es gibt keine Räume mehr");
-        var currIter2 = 0;
         while (true)
         {
             if (queue.Count % 2 == 1)
             {
                 break;
             }
-            if (currIter2++ == 100)
-            {
-                throw new System.Exception("coundn't get next room");
-            }
             var exitPlane = RandomPop(queue);
-            var obj = Object.Instantiate(GetRoom(), CreateVector(i), Quaternion.identity);
-            var room = obj.GetComponent<Room>();
+            (var obj, var room) = CreateRoom(LevelStart, i);
             int entId = Random.Range(0, room.planes.Length); //choose entrance
             var entPlane = room.planes[entId];
-            for (var j = 0; j < room.planes.Length; ++j)
-            {
-                if (j != entId)
-                {
-                    queue.Add(room.planes[j]);
-                }
-            }
+            PushAll(queue, room, entId);
             Lank(entPlane, exitPlane);
             ++i;
         }
         {
             var exitPlane = RandomPop(queue);
-            var obj = Object.Instantiate(LevelEnd, CreateVector(i), Quaternion.identity);
-            var room = obj.GetComponent<Room>();
+            (var obj, var room) = CreateRoom(LevelStart, i);
             var entPlane = room.planes[0];
+            entPlane.Parent = room;
             Lank(entPlane, exitPlane);
             ++i;
         }
