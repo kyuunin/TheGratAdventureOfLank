@@ -25,7 +25,16 @@ public class Room : MonoBehaviour
         this.SetRoomActive(true);
     }
 
-    private void SetRoomActive(bool state) {
+    private void SetRoomActive(bool state)
+    {
+        // dynamic occlusion culling
+        foreach (var r in GetComponentsInChildren<Renderer>())
+            r.enabled = state;
+        foreach (var p in planes)
+            foreach (var r in p.Brother.Parent.GetComponentsInChildren<Renderer>())
+                r.enabled = state;
+        
+        // enable/disable portal cameras
         foreach (Plane plane in planes)
         {
             plane.cam.SetActive(state);
@@ -35,6 +44,10 @@ public class Room : MonoBehaviour
     void Start()
     {
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+
+
+        // dynamic occlusion culling: start level disabled
+        foreach (var r in GetComponentsInChildren<Renderer>()) r.enabled = false;
     }
 
     // Update is called once per frame
