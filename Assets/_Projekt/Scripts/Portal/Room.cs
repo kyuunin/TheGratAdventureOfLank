@@ -14,7 +14,7 @@ public class Room : MonoBehaviour
     public Shader DefaultShader { get; set; }
 
     public static Room CurrentPlayerRoom { get; set; }
-    public static readonly int RenderDepth = 4;
+    public static readonly int RenderDepth = 3;
 
     // active room list; currentActiveRooms[0] is current Room
     struct ActiveRoomEntry { public Room room; public Camera parentCam; };
