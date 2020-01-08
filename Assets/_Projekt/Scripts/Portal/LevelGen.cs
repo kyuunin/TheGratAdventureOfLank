@@ -16,6 +16,120 @@ public class LevelGen : MonoBehaviour
     public float bridgeProbability;
     public GameObject CamPrefeb;
     public Shader DefaultShader;
+    public int numberOptimizerPasses = 100;
+    public (List<Room>, Dictionary<Room, int>) InScene;
+    public GameObject PointDisplay;
+    public Vector2 MapPosition;
+    public Vector2 MapScale;
+
+    void AddToScene(Room room)
+    {
+        var n = InScene.Item1.Count;
+        InScene.Item1.Add(room);
+        InScene.Item2.Add(room, n);
+    }
+
+    float[,] InitMatrix()
+    {
+        var n = InScene.Item1.Count;
+        float[,] matrix = new float[n, n];
+        for (var i = 0; i < n; ++i)
+        {
+            for (var j = 0; j < n; ++j)
+            {
+                matrix[i, j] = i == j ? 0 : float.PositiveInfinity;
+            }
+        }
+        for (var i = 0; i < n; ++i)
+        {
+            foreach (var plane in InScene.Item1[i].planes)
+            {
+                var j = InScene.Item2[plane.Brother.Parent];
+                matrix[i, j] = 1;
+            }
+        }
+        return matrix;
+    }
+
+    float[,] DistMatrix()
+    {
+        var n = InScene.Item1.Count;
+        float[,] matrix = InitMatrix();
+        float[,] buffer = (float[,])matrix.Clone();
+        for (var l = 1; l < n; l *= 2)
+        {
+            for (var i = 0; i < n; ++i)
+            {
+                for (var j = 0; j < n; ++j)
+                {
+                    if (matrix[i, j] != float.PositiveInfinity)
+                    {
+                        buffer[i, j] = matrix[i, j];
+                        continue;
+                    }
+                    for (var k = 0; k < n; ++k)
+                    {
+                        var tmp = matrix[i, k] + matrix[k, j];
+                        if (buffer[i, j] > tmp)
+                        {
+                            buffer[i, j] = tmp;
+                        }
+                    }
+                }
+            }
+            (matrix, buffer) = (buffer, matrix);
+        }
+        PrintMatrix(matrix);
+        return matrix;
+    }
+
+    void PrintMatrix(float[,] matrix)
+    {
+        var n = InScene.Item1.Count;
+        var res = "";
+        for (var i = 0; i < n; ++i)
+        {
+            for (var j = 0; j < n; ++j)
+            {
+                res += (matrix[i, j] == float.PositiveInfinity ? "_," : matrix[i, j] + ",");
+            }
+            res += "\n";
+        }
+        Debug.Log(res);
+    }
+
+    Vector2[] CreateGraph(float[,] matrix)
+    {
+        var n = InScene.Item1.Count;
+        Vector2[] graph = new Vector2[n];
+        for (var i = 0; i < n; ++i)
+        {
+            graph[i].x = Random.Range(0f, 1f);
+            graph[i].y = Random.Range(0f, 1f);
+        }
+        Vector2[] buffer = new Vector2[n];
+        for (var k = 0; k < numberOptimizerPasses; ++k)
+        {
+            for (var i = 0; i < n; ++i)
+            {
+                buffer[i] = Vector2.zero;
+                for (var j = 0; j < n; ++j)
+                {
+                    var tmp = graph[i] - graph[j];
+                    tmp.Normalize();
+                    buffer[i] += matrix[i, j] * tmp / n;
+                }
+            }
+            (graph, buffer) = (buffer, graph);
+        }
+        var x = "";
+        for (var i = 0; i < n; ++i)
+        {
+            x += graph[i] + "\n";
+        }
+        Debug.Log(x);
+        return graph;
+    }
 
     void Lank(Plane p1, Plane p2)
     {
@@ -93,6 +207,8 @@ public class LevelGen : MonoBehaviour
 
     private void Awake()
     {
+        InScene.Item1 = new List<Room>();
+        InScene.Item2 = new Dictionary<Room, int>();
         InitWeight();
         int i;
         List<Plane> queue = new List<Plane>();
@@ -101,6 +217,7 @@ public class LevelGen : MonoBehaviour
             room.isFirst = true;
             PushAll(queue, room);
             generatedStartRoom = room;
+            AddToScene(room);
         }
 
         for (i = 1; i < targetSize; ++i)
@@ -131,6 +248,7 @@ public class LevelGen : MonoBehaviour
                     }
                     else
                     {
+                        AddToScene(room);
                         break;
                     }
                 }
@@ -155,6 +273,7 @@ public class LevelGen : MonoBehaviour
             }
             var exitPlane = RandomPop(queue);
             (var obj, var room) = CreateRoom(GetRoom(), i);
+            AddToScene(room);
             int entId = Random.Range(0, room.planes.Length); //choose entrance
             var entPlane = room.planes[entId];
             PushAll(queue, room, entId);
@@ -164,6 +283,7 @@ public class LevelGen : MonoBehaviour
         {
             var exitPlane = RandomPop(queue);
             (var obj, var room) = CreateRoom(LevelEnd, i);
+            AddToScene(room);
             var entPlane = room.planes[0];
             entPlane.Parent = room;
             Lank(entPlane, exitPlane);
@@ -180,7 +300,15 @@ public class LevelGen : MonoBehaviour
         }
 
         Object.Instantiate(mainChar, charPos, charDir);
-
+        var graph = CreateGraph(DistMatrix());
+        foreach (var p in graph)
+        {
+            var tmp = Object.Instantiate(PointDisplay, new Vector3(0, 0, 0), Quaternion.identity);
+            Debug.Log(p);
+            p.Scale(MapScale);
+            tmp.transform.Find("Point").GetComponent<RectTransform>().anchoredPosition = p+MapPosition;
+            // = new Vector3(p.x * MapScale.x + MapPosition.x,0, p.y * MapScale.y * MapPosition.y);
+        }
     }
 
     private void Start()

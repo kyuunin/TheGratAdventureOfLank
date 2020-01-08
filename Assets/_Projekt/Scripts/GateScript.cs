@@ -10,7 +10,11 @@ public class GateScript : MonoBehaviour
     {
         int diff = CoinScript.GetRequiredCoinCount() - CoinScript.CoinsCollected;
         if (diff < 0) diff = 0;
-
+        if (text == null)
+        {
+            Debug.Log("text is null");
+            return;
+        }
         text.SetText("You Need\n" + diff + " more\nCoins!");
 
         if(diff == 0)

@@ -185,6 +185,11 @@ MonoBehaviour:
   CamPrefeb: {fileID: 1086520907866457113, guid: 8c3951664fb1e0d47a466b1684600dcd,
     type: 3}
   DefaultShader: {fileID: 4800000, guid: 5beba3abb19420d46a9d87c8a52bbd4f, type: 3}
+  numberOptimizerPasses: 100
+  PointDisplay: {fileID: 9132754425821685947, guid: 55ca6d880989da942ae6982a363984dd,
+    type: 3}
+  MapPosition: {x: -400, y: -200}
+  MapScale: {x: 20, y: 20}
 --- !u!4 &427465003
 Transform:
   m_ObjectHideFlags: 0
