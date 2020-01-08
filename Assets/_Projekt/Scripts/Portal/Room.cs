@@ -12,19 +12,50 @@ public class Room : MonoBehaviour
     public Camera mainCamera { get; set; }
     public GameObject CamPrefeb { get; set; }
     public Shader DefaultShader { get; set; }
+
     public static Room CurrentPlayerRoom { get; set; }
-    private static Room lastRoomActive = null;
+    public static readonly int RenderDepth = 4;
+
+    // active room list; currentActiveRooms[0] is current Room
+    struct ActiveRoomEntry { public Room room; public Camera parentCam; };
+    private static List<ActiveRoomEntry> currentActiveRooms = new List<ActiveRoomEntry>();
 
     public void SetRoomActiveExclusively()
     {
-        if (lastRoomActive == this) return;
+        // already in this room
+        if (currentActiveRooms.Count >= 1 && currentActiveRooms[0].room == this)
+            return;
+        
+        // disable old rooms
+        foreach (var r in currentActiveRooms)
+            r.room.SetRoomActive(false);
 
-        if (lastRoomActive) lastRoomActive.SetRoomActive(false);
-        lastRoomActive = this;
-        this.SetRoomActive(true);
+        // add root room with mainCamera
+        currentActiveRooms.Clear();
+        currentActiveRooms.Add(new ActiveRoomEntry { room = this, parentCam = mainCamera });
+        
+        // recursively add rooms
+        for(int i = 1; i < RenderDepth; i++)
+        {
+            foreach(var e in new List<ActiveRoomEntry>(currentActiveRooms))
+            {
+                Room r = e.room;
+                foreach(var p in r.planes)
+                {
+                    currentActiveRooms.Add(new ActiveRoomEntry { room = p.Brother.Parent, parentCam = p.cam.GetComponent<Camera>() });
+                }
+            }
+        }
+
+        // enable rooms in reverse order to give parent rooms the highest priority on parentCameras for the portals
+        for(int i = currentActiveRooms.Count - 1; i >= 0; i--)
+        {
+            currentActiveRooms[i].room.SetRoomActive(true, currentActiveRooms[i].parentCam);
+        }
+        
     }
 
-    private void SetRoomActive(bool state)
+    private void SetRoomActive(bool state, Camera parentCamera = null)
     {
         // dynamic occlusion culling
         foreach (var r in GetComponentsInChildren<Renderer>())
@@ -38,6 +69,12 @@ public class Room : MonoBehaviour
         {
             plane.cam.SetActive(state);
         }
+        
+        // set parent camera
+        
+        if(state == true)
+            foreach (Plane plane in planes)
+                plane.cam.GetComponent<CameraController>().ParentCamera = parentCamera ?? mainCamera;
     }
 
     void Start()
@@ -60,12 +97,13 @@ public class Room : MonoBehaviour
             Mats = new Material[planes.Length];
             for (var i = 0; i < planes.Length; ++i)
             {
-                Cam[i] = Object.Instantiate(CamPrefeb);
+                Cam[i] = Object.Instantiate(CamPrefeb, transform);
+                Cam[i].name = "Portal Cam " + i;
                 var CamCont = Cam[i].GetComponent<CameraController>();
                 CamCont.HiddenPlane = planes[i].Brother;
                 planes[i].cam = Cam[i];
                 CamCont.PlayerPlane = planes[i];
-                CamCont.PlayerCamera = mainCamera;
+                CamCont.ParentCamera = mainCamera;
                 var Tex = new RenderTexture(Screen.width, Screen.height, 24);
                 Cam[i].GetComponent<Camera>().targetTexture = Tex;
                 Mats[i] = new Material(DefaultShader) { mainTexture = Tex };
