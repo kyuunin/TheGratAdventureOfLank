@@ -12,7 +12,7 @@ public class Room : MonoBehaviour
     public Camera mainCamera { get; set; }
     public GameObject CamPrefeb { get; set; }
     public Shader DefaultShader { get; set; }
-
+    public static LevelGen Level { get; set; }
     public static Room CurrentPlayerRoom { get; set; }
     public static readonly int RenderDepth = 3;
 

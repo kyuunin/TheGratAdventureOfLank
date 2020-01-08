@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelGen : MonoBehaviour
 {
@@ -21,6 +22,14 @@ public class LevelGen : MonoBehaviour
     public GameObject PointDisplay;
     public Vector2 MapPosition;
     public Vector2 MapScale;
+    public GameObject[] MapNodes;
+    private int activeRoom = 0;
+    public void EnterRoom(Room r)
+    {
+        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.white;
+        activeRoom = InScene.Item2[r];
+        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.red;
+    }
 
     void AddToScene(Room room)
     {
@@ -301,14 +310,17 @@ public class LevelGen : MonoBehaviour
 
         Object.Instantiate(mainChar, charPos, charDir);
         var graph = CreateGraph(DistMatrix());
-        foreach (var p in graph)
+        MapNodes = new GameObject[graph.Length];
+        for (var j = 0; j < graph.Length; ++j)
         {
-            var tmp = Object.Instantiate(PointDisplay, new Vector3(0, 0, 0), Quaternion.identity);
-            Debug.Log(p);
-            p.Scale(MapScale);
-            tmp.transform.Find("Point").GetComponent<RectTransform>().anchoredPosition = p+MapPosition;
+            MapNodes[j] = Object.Instantiate(PointDisplay, new Vector3(0, 0, 0), Quaternion.identity);
+            graph[j].Scale(MapScale);
+            MapNodes[j].transform.Find("Point").GetComponent<RectTransform>().anchoredPosition = graph[j] + MapPosition;
             // = new Vector3(p.x * MapScale.x + MapPosition.x,0, p.y * MapScale.y * MapPosition.y);
         }
+
+        Room.Level = this;
+        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.red;
     }
 
     private void Start()

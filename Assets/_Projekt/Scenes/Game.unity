@@ -169,19 +169,19 @@ MonoBehaviour:
   - {fileID: 98702907246398308, guid: 50b302b2150b41e468b389a372e49b6f, type: 3}
   - {fileID: 1587984166723192346, guid: 9642ca0b1023a98498e03ffefe594ffc, type: 3}
   weight:
+  - 30
   - 10
   - 10
-  - 15
-  - 10
+  - 30
   - 5
-  - 13
   - 10
-  - 10
+  - 30
   - 5
-  - 8
+  - 30
+  - 5
   targetSize: 20
   space: 100
-  bridgeProbability: 0.1
+  bridgeProbability: 0.5
   CamPrefeb: {fileID: 1086520907866457113, guid: 8c3951664fb1e0d47a466b1684600dcd,
     type: 3}
   DefaultShader: {fileID: 4800000, guid: 5beba3abb19420d46a9d87c8a52bbd4f, type: 3}
@@ -190,6 +190,7 @@ MonoBehaviour:
     type: 3}
   MapPosition: {x: -400, y: -200}
   MapScale: {x: 20, y: 20}
+  MapNodes: []
 --- !u!4 &427465003
 Transform:
   m_ObjectHideFlags: 0

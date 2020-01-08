@@ -36,6 +36,7 @@ public class Plane : MonoBehaviour
                 other.transform.rotation = Rot * other.transform.rotation;
 
                 Room.CurrentPlayerRoom = this.Brother.Parent;
+                Room.Level.EnterRoom(Room.CurrentPlayerRoom);
             }
             cc.enabled = true;
         }
