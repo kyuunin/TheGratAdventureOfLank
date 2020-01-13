@@ -20,6 +20,7 @@ public class LevelGen : MonoBehaviour
     public int numberOptimizerPasses = 100;
     public (List<Room>, Dictionary<Room, int>) InScene;
     public GameObject PointDisplay;
+    public GameObject Map { set; get; }
     public Vector2 MapPosition;
     public Vector2 MapScale;
     public GameObject[] MapNodes;
@@ -214,6 +215,25 @@ public class LevelGen : MonoBehaviour
         return (obj, room);
     }
 
+    void InitMap()
+    {
+        Map = new GameObject("Map");
+
+        var graph = CreateGraph(DistMatrix());
+        MapNodes = new GameObject[graph.Length];
+        for (var j = 0; j < graph.Length; ++j)
+        {
+            MapNodes[j] = Object.Instantiate(PointDisplay, new Vector3(0, 0, 0), Quaternion.identity);
+            MapNodes[j].transform.parent = Map.transform;
+            graph[j].Scale(MapScale);
+            MapNodes[j].transform.Find("Point").GetComponent<RectTransform>().anchoredPosition = graph[j] + MapPosition;
+            // = new Vector3(p.x * MapScale.x + MapPosition.x,0, p.y * MapScale.y * MapPosition.y);
+        }
+
+        Room.Level = this;
+        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.red;
+    }
+
     private void Awake()
     {
         InScene.Item1 = new List<Room>();
@@ -309,18 +329,8 @@ public class LevelGen : MonoBehaviour
         }
 
         Object.Instantiate(mainChar, charPos, charDir);
-        var graph = CreateGraph(DistMatrix());
-        MapNodes = new GameObject[graph.Length];
-        for (var j = 0; j < graph.Length; ++j)
-        {
-            MapNodes[j] = Object.Instantiate(PointDisplay, new Vector3(0, 0, 0), Quaternion.identity);
-            graph[j].Scale(MapScale);
-            MapNodes[j].transform.Find("Point").GetComponent<RectTransform>().anchoredPosition = graph[j] + MapPosition;
-            // = new Vector3(p.x * MapScale.x + MapPosition.x,0, p.y * MapScale.y * MapPosition.y);
-        }
-
-        Room.Level = this;
-        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.red;
+        InitMap();
+        Map.SetActive(false);
     }
 
     private void Start()
