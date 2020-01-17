@@ -10,6 +10,7 @@ public class SwordHitAnimationBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         swordCollider.isEnabled = true;
+        swordCollider.GetComponentInChildren<TrailRenderer>().enabled = true;
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -22,6 +23,7 @@ public class SwordHitAnimationBehaviour : StateMachineBehaviour
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         swordCollider.isEnabled = false;
+        swordCollider.GetComponentInChildren<TrailRenderer>().enabled = false;
     }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
