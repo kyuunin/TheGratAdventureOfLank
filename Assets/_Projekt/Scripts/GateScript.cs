@@ -19,7 +19,12 @@ public class GateScript : MonoBehaviour
 
         if(diff == 0)
         {
-            Destroy(gameObject, 1.0f);
+            text.SetText("You may\nenter.");
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Destroy(gameObject, 0.1f);
     }
 }

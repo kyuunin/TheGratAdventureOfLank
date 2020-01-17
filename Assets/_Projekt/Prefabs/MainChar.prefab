@@ -863,7 +863,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   strafeSpeed: 3
-  gravity: 10
+  gravity: 8
   jumpSpeed: 6
   swordCollider: {fileID: 225162082}
   dmgColorChanger: {fileID: 5467460772564151547}
@@ -1411,7 +1411,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4936155178124171735}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
