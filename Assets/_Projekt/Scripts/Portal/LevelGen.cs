@@ -25,11 +25,15 @@ public class LevelGen : MonoBehaviour
     public Vector2 MapScale;
     public GameObject[] MapNodes;
     private int activeRoom = 0;
+
+    private readonly Color mapNodeColor = Color.white;
+    private readonly Color mapNodeActiveColor = Color.red;
+
     public void EnterRoom(Room r)
     {
-        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.white;
+        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = mapNodeColor;
         activeRoom = InScene.Item2[r];
-        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = Color.red;
+        MapNodes[activeRoom].transform.Find("Point").gameObject.GetComponent<Image>().color = mapNodeActiveColor;
     }
 
     void AddToScene(Room room)
@@ -331,6 +335,11 @@ public class LevelGen : MonoBehaviour
         Object.Instantiate(mainChar, charPos, charDir);
         InitMap();
         Map.SetActive(false);
+    }
+
+    public void ActiveMap()
+    {
+        Map.SetActive(true);
     }
 
     private void Start()

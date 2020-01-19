@@ -120,7 +120,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &427465001
+--- !u!1 &1431401944
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,8 +128,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 427465003}
-  - component: {fileID: 427465002}
+  - component: {fileID: 1431401946}
+  - component: {fileID: 1431401945}
   m_Layer: 0
   m_Name: Level Generator
   m_TagString: Untagged
@@ -137,13 +137,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &427465002
+--- !u!114 &1431401945
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427465001}
+  m_GameObject: {fileID: 1431401944}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c00ef3914310aa44a9b94150d6e028eb, type: 3}
@@ -169,30 +169,35 @@ MonoBehaviour:
   - {fileID: 98702907246398308, guid: 50b302b2150b41e468b389a372e49b6f, type: 3}
   - {fileID: 1587984166723192346, guid: 9642ca0b1023a98498e03ffefe594ffc, type: 3}
   weight:
+  - 30
   - 10
   - 10
-  - 15
-  - 10
+  - 30
   - 5
-  - 13
   - 10
-  - 10
+  - 30
   - 5
-  - 8
+  - 30
+  - 5
   targetSize: 1
   space: 100
-  bridgeProbability: 0.1
+  bridgeProbability: 0.5
   CamPrefeb: {fileID: 1086520907866457113, guid: 8c3951664fb1e0d47a466b1684600dcd,
     type: 3}
   DefaultShader: {fileID: 4800000, guid: 5beba3abb19420d46a9d87c8a52bbd4f, type: 3}
   numberOptimizerPasses: 100
---- !u!4 &427465003
+  PointDisplay: {fileID: 9132754425821685947, guid: 55ca6d880989da942ae6982a363984dd,
+    type: 3}
+  MapPosition: {x: -400, y: -200}
+  MapScale: {x: 20, y: 20}
+  MapNodes: []
+--- !u!4 &1431401946
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 427465001}
+  m_GameObject: {fileID: 1431401944}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 16.784554, y: 85.39778, z: 37.754387}
   m_LocalScale: {x: 1, y: 1, z: 1}

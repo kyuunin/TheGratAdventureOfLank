@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+using System.Linq;
+
 public class WinScreenDisplay : MonoBehaviour
 {
     public Text winText;
@@ -27,8 +29,11 @@ public class WinScreenDisplay : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Return))
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                foreach (var obj in GameObject.FindObjectsOfType<MonoBehaviour>().OfType<IResettable>())
+                    obj.Reset();
                 CoinScript.Reset();
+
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             }
         }
     }
