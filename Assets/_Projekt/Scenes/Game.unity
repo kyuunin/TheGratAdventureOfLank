@@ -168,6 +168,8 @@ MonoBehaviour:
   - {fileID: 2508473323617497592, guid: d476cc96fa92a604a9013128e825907d, type: 3}
   - {fileID: 98702907246398308, guid: 50b302b2150b41e468b389a372e49b6f, type: 3}
   - {fileID: 1587984166723192346, guid: 9642ca0b1023a98498e03ffefe594ffc, type: 3}
+  - {fileID: 7304025030670871305, guid: a7770b3ed63e8a947b33ceee5383ae17, type: 3}
+  - {fileID: 6724823858924460421, guid: 0657359fb5696d848a1a4f6ec7cbe7f7, type: 3}
   weight:
   - 30
   - 10
@@ -179,6 +181,8 @@ MonoBehaviour:
   - 5
   - 30
   - 5
+  - 150
+  - 100
   targetSize: 20
   space: 100
   bridgeProbability: 0.5
