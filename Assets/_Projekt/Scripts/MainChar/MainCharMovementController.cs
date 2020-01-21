@@ -34,6 +34,7 @@ public class MainCharMovementController : DamageReceiver, ICanHeal
         animator.GetBehaviour<SwordHitAnimationBehaviour>().swordCollider = swordCollider;
 
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         IsDead = false;
         lifeDisplay.SetValue(life);
     }
