@@ -234,7 +234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e987ce039c0abdf40adce53ca6f714fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LogCameraCount: 1
+  LogCameraCount: 0
 --- !u!4 &909500422
 Transform:
   m_ObjectHideFlags: 0
