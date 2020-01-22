@@ -53,4 +53,9 @@ public class CoinScript : MonoBehaviour
         CoinsCollected = 0;
         CoinsSpawned = 0;
     }
+
+    public static void CheatAllCoins()
+    {
+        CoinsCollected = CoinsSpawned;
+    }
 }

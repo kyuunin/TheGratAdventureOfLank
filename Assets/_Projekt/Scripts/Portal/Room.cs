@@ -22,9 +22,18 @@ public class Room : MonoBehaviour
 
     public void SetRoomActiveExclusively()
     {
+        // remove unused references
+        for (int i = 0; i < currentActiveRooms.Count; i++)
+        {
+            if (currentActiveRooms[i].room == null)
+                currentActiveRooms.RemoveAt(i--);
+        }
+
         // already in this room
         if (currentActiveRooms.Count >= 1 && currentActiveRooms[0].room == this)
             return;
+
+        
         
         // disable old rooms
         foreach (var r in currentActiveRooms)
@@ -82,8 +91,7 @@ public class Room : MonoBehaviour
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
 
 
-        // dynamic occlusion culling: start level disabled
-        foreach (var r in GetComponentsInChildren<Renderer>()) r.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -109,6 +117,9 @@ public class Room : MonoBehaviour
                 Mats[i] = new Material(DefaultShader) { mainTexture = Tex };
                 planes[i].GetComponent<MeshRenderer>().material = Mats[i];
                 Cam[i].SetActive(isFirst);
+
+                // dynamic occlusion culling: start level disabled
+                foreach (var r in GetComponentsInChildren<Renderer>()) r.enabled = false;
             }
         }
     }

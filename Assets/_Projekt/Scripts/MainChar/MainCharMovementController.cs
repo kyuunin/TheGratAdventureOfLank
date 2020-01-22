@@ -85,8 +85,8 @@ public class MainCharMovementController : DamageReceiver, ICanHeal
         else if (Input.GetKey(KeyCode.Return))
         {
             //Application.LoadLevel(Application.loadedLevel);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
             CoinScript.Reset();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 
         }
     }

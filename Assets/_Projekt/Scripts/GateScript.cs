@@ -17,7 +17,7 @@ public class GateScript : MonoBehaviour
         }
         text.SetText("You Need\n" + diff + " more\nCoins!");
 
-        if(diff == 0)
+        if(diff <= 0)
         {
             text.SetText("You may\nenter.");
         }
@@ -25,6 +25,9 @@ public class GateScript : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject, 0.1f);
+        int diff = CoinScript.GetRequiredCoinCount() - CoinScript.CoinsCollected;
+        if (diff < 0) diff = 0;
+        if(diff == 0)
+            Destroy(gameObject, 0.1f);
     }
 }
